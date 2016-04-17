@@ -1,25 +1,136 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XuR-nV-y0k">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Rendezvous" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rendezvous" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37h-LZ-IbU">
+                                <rect key="frame" x="32" y="186" width="310" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="310" id="sud-Vq-7wD"/>
+                                    <constraint firstAttribute="height" constant="38" id="vuV-ee-TvM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rendezvous Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="nrh-Yc-p7G">
+                                <rect key="frame" x="127" y="64" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="7cW-vd-YwT"/>
+                                    <constraint firstAttribute="width" constant="120" id="uKf-Mp-7m0"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There's a time and place for everything" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eiw-E1-d86">
+                                <rect key="frame" x="28" y="225" width="318" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Pko-sV-QA6"/>
+                                    <constraint firstAttribute="width" constant="318" id="i3H-jO-3Fh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qoz-yy-reL">
+                                <rect key="frame" x="94" y="426" width="186" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="186" id="1fX-UH-vH0"/>
+                                    <constraint firstAttribute="height" constant="55" id="jrW-VU-dLc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Log In" backgroundImage="Launch Buttons.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lr4-gv-Nuy">
+                                <rect key="frame" x="94" y="497" width="186" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Ftt-BO-8EO"/>
+                                    <constraint firstAttribute="width" constant="186" id="ank-Bo-e7P"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Sign Up" backgroundImage="Launch Buttons.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.22387699992285187" green="0.31507111682603711" blue="0.44930055628272247" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="eiw-E1-d86" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1jR-9j-o4V"/>
+                            <constraint firstItem="37h-LZ-IbU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KPY-ly-v1O"/>
+                            <constraint firstItem="nrh-Yc-p7G" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="64" id="Pps-b7-e1R"/>
+                            <constraint firstItem="eiw-E1-d86" firstAttribute="top" secondItem="37h-LZ-IbU" secondAttribute="bottom" constant="1" id="ReX-QR-OoN"/>
+                            <constraint firstItem="qoz-yy-reL" firstAttribute="top" secondItem="eiw-E1-d86" secondAttribute="bottom" constant="180" id="Ted-Kc-ZCz"/>
+                            <constraint firstItem="nrh-Yc-p7G" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hhd-Lh-tsz"/>
+                            <constraint firstItem="Lr4-gv-Nuy" firstAttribute="top" secondItem="qoz-yy-reL" secondAttribute="bottom" constant="16" id="i6q-8e-htd"/>
+                            <constraint firstItem="Lr4-gv-Nuy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="svj-xj-fbQ"/>
+                            <constraint firstItem="qoz-yy-reL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wFj-YY-0RK"/>
+                            <constraint firstItem="37h-LZ-IbU" firstAttribute="top" secondItem="nrh-Yc-p7G" secondAttribute="bottom" constant="2" id="yVi-XX-xsV"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="D28-Dk-jf0"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="7vC-92-oGB" kind="show" identifier="LogInSegue" id="zMt-Yc-bCI"/>
+                        <segue destination="dE5-Zc-oge" kind="show" identifier="SignUpSegue" id="9Aa-Xn-p5A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1251.5" y="429.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cDp-OT-S1x">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XuR-nV-y0k" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8J0-pl-IR1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="g19-qe-qta"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mrn-tp-XMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="439" y="429"/>
+        </scene>
+        <!--LogIn-->
+        <scene sceneID="WrL-1m-zbn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LogIn" id="7vC-92-oGB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dal-8T-sy4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1755.5" y="429.5"/>
+        </scene>
+        <!--SignUp-->
+        <scene sceneID="ZuT-vT-ijG">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignUp" id="dE5-Zc-oge" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cYe-X0-0hR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1854.5" y="243.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Launch Buttons.png" width="184" height="60"/>
+        <image name="Rendezvous Logo.png" width="251" height="251"/>
+    </resources>
 </document>

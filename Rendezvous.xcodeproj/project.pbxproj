@@ -13,6 +13,10 @@
 		73D9C1E31CC3213000659718 /* Rendezvous.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73D9C1E11CC3213000659718 /* Rendezvous.xcdatamodeld */; };
 		73D9C1E51CC3213000659718 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1E41CC3213000659718 /* Assets.xcassets */; };
 		73D9C1E81CC3213000659718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1E61CC3213000659718 /* LaunchScreen.storyboard */; };
+		73D9C1F11CC35D4600659718 /* Rendezvous Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */; };
+		73D9C1F31CC3626F00659718 /* Launch Buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F21CC3626F00659718 /* Launch Buttons.png */; };
+		73D9C1F61CC3EC4900659718 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F41CC3EC4900659718 /* LogIn.storyboard */; };
+		73D9C1F81CC3EC8000659718 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F71CC3EC8000659718 /* SignUp.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		73D9C1E41CC3213000659718 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73D9C1E71CC3213000659718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73D9C1E91CC3213000659718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rendezvous Logo.png"; sourceTree = "<group>"; };
+		73D9C1F21CC3626F00659718 /* Launch Buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Buttons.png"; sourceTree = "<group>"; };
+		73D9C1F51CC3EC4900659718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogIn.storyboard; sourceTree = "<group>"; };
+		73D9C1F71CC3EC8000659718 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +67,24 @@
 				73D9C1DA1CC3213000659718 /* AppDelegate.swift */,
 				73D9C1DC1CC3213000659718 /* ViewController.swift */,
 				73D9C1DE1CC3213000659718 /* Main.storyboard */,
+				73D9C1F71CC3EC8000659718 /* SignUp.storyboard */,
+				73D9C1F41CC3EC4900659718 /* LogIn.storyboard */,
 				73D9C1E41CC3213000659718 /* Assets.xcassets */,
 				73D9C1E61CC3213000659718 /* LaunchScreen.storyboard */,
 				73D9C1E91CC3213000659718 /* Info.plist */,
 				73D9C1E11CC3213000659718 /* Rendezvous.xcdatamodeld */,
+				73D9C1EF1CC35D3400659718 /* Images */,
 			);
 			path = Rendezvous;
+			sourceTree = "<group>";
+		};
+		73D9C1EF1CC35D3400659718 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */,
+				73D9C1F21CC3626F00659718 /* Launch Buttons.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,8 +146,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D9C1F11CC35D4600659718 /* Rendezvous Logo.png in Resources */,
 				73D9C1E81CC3213000659718 /* LaunchScreen.storyboard in Resources */,
 				73D9C1E51CC3213000659718 /* Assets.xcassets in Resources */,
+				73D9C1F81CC3EC8000659718 /* SignUp.storyboard in Resources */,
+				73D9C1F31CC3626F00659718 /* Launch Buttons.png in Resources */,
+				73D9C1F61CC3EC4900659718 /* LogIn.storyboard in Resources */,
 				73D9C1E01CC3213000659718 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,6 +186,14 @@
 				73D9C1E71CC3213000659718 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		73D9C1F41CC3EC4900659718 /* LogIn.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73D9C1F51CC3EC4900659718 /* Base */,
+			);
+			name = LogIn.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
