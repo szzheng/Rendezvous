@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73124CBE1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73124CBD1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift */; };
 		73C93F791CC58EA100F62717 /* Launch Buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 73C93F781CC58EA100F62717 /* Launch Buttons.png */; };
 		73C93F7B1CC5935600F62717 /* SetEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C93F7A1CC5935600F62717 /* SetEmailViewController.swift */; };
 		73C93F7D1CC5D11500F62717 /* Invalid Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 73C93F7C1CC5D11500F62717 /* Invalid Button.png */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		2EAAB3416707C7A2A5573414 /* Pods_Rendezvous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rendezvous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71FFDD4A27F95772245F48BE /* Pods-Rendezvous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.debug.xcconfig"; sourceTree = "<group>"; };
+		73124CBD1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterBirthdayViewController.swift; sourceTree = "<group>"; };
 		73C93F781CC58EA100F62717 /* Launch Buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Buttons.png"; sourceTree = "<group>"; };
 		73C93F7A1CC5935600F62717 /* SetEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetEmailViewController.swift; sourceTree = "<group>"; };
 		73C93F7C1CC5D11500F62717 /* Invalid Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Invalid Button.png"; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				73D9C1FB1CC3F39E00659718 /* SignUp.storyboard */,
 				73C93F7A1CC5935600F62717 /* SetEmailViewController.swift */,
 				73C93F7F1CC5F88200F62717 /* SetPasswordViewController.swift */,
+				73124CBD1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift */,
 			);
 			name = "Sign Up";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				73D9C1E31CC3213000659718 /* Rendezvous.xcdatamodeld in Sources */,
 				73C93F801CC5F88200F62717 /* SetPasswordViewController.swift in Sources */,
 				73D9C1DD1CC3213000659718 /* ViewController.swift in Sources */,
+				73124CBE1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift in Sources */,
 				73D9C1DB1CC3213000659718 /* AppDelegate.swift in Sources */,
 				73D9C1FA1CC3F0EB00659718 /* HomeViewController.swift in Sources */,
 			);

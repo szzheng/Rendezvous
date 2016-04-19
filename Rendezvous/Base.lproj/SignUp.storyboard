@@ -229,11 +229,126 @@
                         <outlet property="errorMessage" destination="98Y-ry-AOA" id="rhw-Gb-pLZ"/>
                         <outlet property="password" destination="DBz-we-nDz" id="Ej5-eY-9Dh"/>
                         <outlet property="passwordCaption" destination="8IK-SF-eSm" id="Gjp-d1-KqX"/>
+                        <segue destination="afk-8k-Upw" kind="show" identifier="EnterBirthdaySegue" id="MKK-6q-KkX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8n-Sw-9Mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1284.5" y="429.5"/>
+        </scene>
+        <!--Enter Birthday View Controller-->
+        <scene sceneID="QzB-9L-Ibj">
+            <objects>
+                <viewController id="afk-8k-Upw" customClass="EnterBirthdayViewController" customModule="Rendezvous" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wVY-y8-0x2"/>
+                        <viewControllerLayoutGuide type="bottom" id="FWb-hX-ZWE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4oh-ys-sYf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUJ-Ng-OC0">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="I00-HK-Hng"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem id="8Sb-IV-oMl">
+                                        <barButtonItem key="leftBarButtonItem" image="Back Icon" id="Xw8-vN-OZT">
+                                            <connections>
+                                                <action selector="back:" destination="afk-8k-Upw" id="ceH-iV-mLQ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZh-DR-i3z">
+                                <rect key="frame" x="139" y="31" width="97" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="SgR-CS-NVC"/>
+                                    <constraint firstAttribute="height" constant="21" id="a19-CI-Pu8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.14509803921568629" green="0.16862745098039217" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="uzb-Dm-g6u">
+                                <rect key="frame" x="-4" y="115" width="383" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="GeZ-bn-eqa"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="482793943.60126603">
+                                    <!--2016-04-19 21:25:43 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="setDate:" destination="afk-8k-Upw" eventType="valueChanged" id="bWJ-4J-UZI"/>
+                                </connections>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your date of birth:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6i-Xz-5Ti">
+                                <rect key="frame" x="16" y="75" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="pta-2h-KBY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coE-0B-qg9">
+                                <rect key="frame" x="130.5" y="414" width="115" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="NPu-D1-fmI"/>
+                                    <constraint firstAttribute="height" constant="33" id="jUJ-WR-o0R"/>
+                                </constraints>
+                                <state key="normal" title="Sign Up" backgroundImage="Launch Buttons.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUp:" destination="afk-8k-Upw" eventType="touchUpInside" id="BbX-yu-p61"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not old enough" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeF-wm-tCs">
+                                <rect key="frame" x="16" y="339" width="343" height="32"/>
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.28472174569999997" blue="0.2851525701" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="3mV-8b-X4a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.17647058823529413" green="0.24705882352941178" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="B6i-Xz-5Ti" secondAttribute="trailing" id="5nQ-43-g39"/>
+                            <constraint firstItem="eeF-wm-tCs" firstAttribute="leading" secondItem="4oh-ys-sYf" secondAttribute="leadingMargin" id="GyZ-Ir-oay"/>
+                            <constraint firstItem="GZh-DR-i3z" firstAttribute="centerX" secondItem="4oh-ys-sYf" secondAttribute="centerX" id="O2Q-7D-JYM"/>
+                            <constraint firstAttribute="trailing" secondItem="WUJ-Ng-OC0" secondAttribute="trailing" id="QQx-sk-Nd7"/>
+                            <constraint firstItem="uzb-Dm-g6u" firstAttribute="top" secondItem="B6i-Xz-5Ti" secondAttribute="bottom" id="T0x-Kr-U8C"/>
+                            <constraint firstItem="B6i-Xz-5Ti" firstAttribute="leading" secondItem="4oh-ys-sYf" secondAttribute="leadingMargin" id="U68-nc-YU4"/>
+                            <constraint firstItem="WUJ-Ng-OC0" firstAttribute="leading" secondItem="4oh-ys-sYf" secondAttribute="leading" id="XQj-Pz-vWP"/>
+                            <constraint firstItem="GZh-DR-i3z" firstAttribute="top" secondItem="wVY-y8-0x2" secondAttribute="bottom" constant="11" id="bic-h4-wSb"/>
+                            <constraint firstItem="coE-0B-qg9" firstAttribute="centerX" secondItem="4oh-ys-sYf" secondAttribute="centerX" id="bse-AN-Gtv"/>
+                            <constraint firstItem="eeF-wm-tCs" firstAttribute="top" secondItem="uzb-Dm-g6u" secondAttribute="bottom" constant="8" id="cvV-Mn-RCq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uzb-Dm-g6u" secondAttribute="trailing" constant="-20" id="hG5-Ot-AED"/>
+                            <constraint firstItem="coE-0B-qg9" firstAttribute="top" secondItem="uzb-Dm-g6u" secondAttribute="bottom" constant="83" id="kbe-LN-KtW"/>
+                            <constraint firstItem="WUJ-Ng-OC0" firstAttribute="top" secondItem="wVY-y8-0x2" secondAttribute="bottom" id="q5f-UK-xvp"/>
+                            <constraint firstItem="uzb-Dm-g6u" firstAttribute="leading" secondItem="4oh-ys-sYf" secondAttribute="leadingMargin" constant="-20" id="s5b-Le-Bgw"/>
+                            <constraint firstItem="B6i-Xz-5Ti" firstAttribute="top" secondItem="WUJ-Ng-OC0" secondAttribute="bottom" constant="11" id="unV-8x-Esb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eeF-wm-tCs" secondAttribute="trailing" id="xlV-BK-mTQ"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="datePicker" destination="uzb-Dm-g6u" id="az9-D8-XU1"/>
+                        <outlet property="errorMessage" destination="eeF-wm-tCs" id="vZ6-4i-Cty"/>
+                        <outlet property="signUpButton" destination="coE-0B-qg9" id="Jnh-UI-wxM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lN1-6i-e6t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1837.5" y="429.5"/>
         </scene>
     </scenes>
     <resources>
