@@ -12,6 +12,8 @@ import Firebase
 
 class SetEmailViewController: UIViewController {
 
+    var firstTime: Bool!
+    
     @IBOutlet var errorMessage: UILabel!
     @IBOutlet var emailAddress: UITextField!
     @IBOutlet var continueButton: UIButton!
@@ -27,12 +29,23 @@ class SetEmailViewController: UIViewController {
         
         disableContinue()
         errorMessage.hidden = true
+        firstTime = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if (firstTime != true) {
+            errorMessage.hidden = true
+            emailAddress.becomeFirstResponder()
+            continueButton.userInteractionEnabled = true
+            continueButton.alpha = 1
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     
     
     // Submit Email
@@ -51,6 +64,8 @@ class SetEmailViewController: UIViewController {
                 self.disableContinue()
                 
                 error = true
+                
+                print("HI")
             }
         })
         
@@ -62,14 +77,15 @@ class SetEmailViewController: UIViewController {
             error = true
         }
         
+        
         if (error != true) {
+            errorMessage.hidden = true
             performSegueWithIdentifier("SetPasswordSegue", sender: self)
         }
     }
     
     // Checks validity of email format
     func isValidEmail(testStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -100,14 +116,17 @@ class SetEmailViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        let setPasswordVC = segue.destinationViewController as! SetPasswordViewController
+        setPasswordVC.email = emailAddress.text!
     }
-    */
+    
 
 }

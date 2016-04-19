@@ -83,7 +83,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="mtw-XZ-qkG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -142,6 +142,9 @@
                                     <navigationItem id="Wsi-iy-YAw">
                                         <barButtonItem key="leftBarButtonItem" image="Back Icon" id="UMg-SJ-yDc">
                                             <color key="tintColor" red="0.12941176470588237" green="0.18431372549019609" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="back:" destination="WKA-iG-60A" id="fWb-cc-FuD"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -163,6 +166,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editPassword:" destination="WKA-iG-60A" eventType="editingChanged" id="zXR-qk-sRV"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password should be at least 6 characters..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8IK-SF-eSm">
                                 <rect key="frame" x="16" y="156" width="343" height="63"/>
@@ -182,14 +188,17 @@
                                 <state key="normal" title="Continue" backgroundImage="Launch Buttons.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="continue:" destination="WKA-iG-60A" eventType="touchUpInside" id="4mE-C8-75M"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98Y-ry-AOA">
                                 <rect key="frame" x="16" y="83" width="343" height="32"/>
-                                <color key="backgroundColor" red="0.95686274509803926" green="0.18823529411764706" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.28472174569999997" blue="0.2851525701" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="snZ-eB-uaS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -215,6 +224,12 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="continueButton" destination="p3t-GG-T4b" id="n1k-e5-0hN"/>
+                        <outlet property="errorMessage" destination="98Y-ry-AOA" id="rhw-Gb-pLZ"/>
+                        <outlet property="password" destination="DBz-we-nDz" id="Ej5-eY-9Dh"/>
+                        <outlet property="passwordCaption" destination="8IK-SF-eSm" id="Gjp-d1-KqX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C8n-Sw-9Mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
