@@ -1,0 +1,44 @@
+//
+//  HomeViewController.swift
+//  Rendezvous
+//
+//  Created by Steven Zheng on 4/17/16.
+//  Copyright © 2016 szzheng. All rights reserved.
+//
+
+import UIKit
+
+class HomeViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func logIn(sender: AnyObject) {
+    }
+
+    
+   
+    @IBAction func signUp(sender: AnyObject) {
+        performSegueWithIdentifier("SignUpSegue", sender: self)
+    }
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

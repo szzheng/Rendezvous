@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73C93F791CC58EA100F62717 /* Launch Buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 73C93F781CC58EA100F62717 /* Launch Buttons.png */; };
+		73C93F7B1CC5935600F62717 /* SetEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C93F7A1CC5935600F62717 /* SetEmailViewController.swift */; };
+		73C93F7D1CC5D11500F62717 /* Invalid Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 73C93F7C1CC5D11500F62717 /* Invalid Button.png */; };
+		73C93F801CC5F88200F62717 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C93F7F1CC5F88200F62717 /* SetPasswordViewController.swift */; };
 		73D9C1DB1CC3213000659718 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9C1DA1CC3213000659718 /* AppDelegate.swift */; };
 		73D9C1DD1CC3213000659718 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9C1DC1CC3213000659718 /* ViewController.swift */; };
 		73D9C1E01CC3213000659718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1DE1CC3213000659718 /* Main.storyboard */; };
@@ -14,12 +18,18 @@
 		73D9C1E51CC3213000659718 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1E41CC3213000659718 /* Assets.xcassets */; };
 		73D9C1E81CC3213000659718 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1E61CC3213000659718 /* LaunchScreen.storyboard */; };
 		73D9C1F11CC35D4600659718 /* Rendezvous Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */; };
-		73D9C1F31CC3626F00659718 /* Launch Buttons.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F21CC3626F00659718 /* Launch Buttons.png */; };
-		73D9C1F61CC3EC4900659718 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F41CC3EC4900659718 /* LogIn.storyboard */; };
-		73D9C1F81CC3EC8000659718 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F71CC3EC8000659718 /* SignUp.storyboard */; };
+		73D9C1FA1CC3F0EB00659718 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9C1F91CC3F0EB00659718 /* HomeViewController.swift */; };
+		73D9C1FD1CC3F39E00659718 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1FB1CC3F39E00659718 /* SignUp.storyboard */; };
+		9CF794773095D4FF5B0C6E1A /* Pods_Rendezvous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EAAB3416707C7A2A5573414 /* Pods_Rendezvous.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2EAAB3416707C7A2A5573414 /* Pods_Rendezvous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rendezvous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71FFDD4A27F95772245F48BE /* Pods-Rendezvous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.debug.xcconfig"; sourceTree = "<group>"; };
+		73C93F781CC58EA100F62717 /* Launch Buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Buttons.png"; sourceTree = "<group>"; };
+		73C93F7A1CC5935600F62717 /* SetEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetEmailViewController.swift; sourceTree = "<group>"; };
+		73C93F7C1CC5D11500F62717 /* Invalid Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Invalid Button.png"; sourceTree = "<group>"; };
+		73C93F7F1CC5F88200F62717 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		73D9C1D71CC3213000659718 /* Rendezvous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rendezvous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D9C1DA1CC3213000659718 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73D9C1DC1CC3213000659718 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,9 +39,9 @@
 		73D9C1E71CC3213000659718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73D9C1E91CC3213000659718 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rendezvous Logo.png"; sourceTree = "<group>"; };
-		73D9C1F21CC3626F00659718 /* Launch Buttons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Launch Buttons.png"; sourceTree = "<group>"; };
-		73D9C1F51CC3EC4900659718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogIn.storyboard; sourceTree = "<group>"; };
-		73D9C1F71CC3EC8000659718 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
+		73D9C1F91CC3F0EB00659718 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		73D9C1FC1CC3F39E00659718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignUp.storyboard; sourceTree = "<group>"; };
+		F8FAFE40AC040E0CBA96CA55 /* Pods-Rendezvous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +49,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF794773095D4FF5B0C6E1A /* Pods_Rendezvous.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73C93F7E1CC5F39700F62717 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				73D9C1FB1CC3F39E00659718 /* SignUp.storyboard */,
+				73C93F7A1CC5935600F62717 /* SetEmailViewController.swift */,
+				73C93F7F1CC5F88200F62717 /* SetPasswordViewController.swift */,
+			);
+			name = "Sign Up";
+			sourceTree = "<group>";
+		};
 		73D9C1CE1CC3213000659718 = {
 			isa = PBXGroup;
 			children = (
 				73D9C1D91CC3213000659718 /* Rendezvous */,
 				73D9C1D81CC3213000659718 /* Products */,
+				E224B6D8F599B5F498F58733 /* Pods */,
+				EE4FB5736CF8B7409343F90B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,9 +89,8 @@
 			children = (
 				73D9C1DA1CC3213000659718 /* AppDelegate.swift */,
 				73D9C1DC1CC3213000659718 /* ViewController.swift */,
-				73D9C1DE1CC3213000659718 /* Main.storyboard */,
-				73D9C1F71CC3EC8000659718 /* SignUp.storyboard */,
-				73D9C1F41CC3EC4900659718 /* LogIn.storyboard */,
+				73D9C1FE1CC3F72900659718 /* Main */,
+				73C93F7E1CC5F39700F62717 /* Sign Up */,
 				73D9C1E41CC3213000659718 /* Assets.xcassets */,
 				73D9C1E61CC3213000659718 /* LaunchScreen.storyboard */,
 				73D9C1E91CC3213000659718 /* Info.plist */,
@@ -81,10 +103,37 @@
 		73D9C1EF1CC35D3400659718 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				73C93F7C1CC5D11500F62717 /* Invalid Button.png */,
+				73C93F781CC58EA100F62717 /* Launch Buttons.png */,
 				73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */,
-				73D9C1F21CC3626F00659718 /* Launch Buttons.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		73D9C1FE1CC3F72900659718 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				73D9C1F91CC3F0EB00659718 /* HomeViewController.swift */,
+				73D9C1DE1CC3213000659718 /* Main.storyboard */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		E224B6D8F599B5F498F58733 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71FFDD4A27F95772245F48BE /* Pods-Rendezvous.debug.xcconfig */,
+				F8FAFE40AC040E0CBA96CA55 /* Pods-Rendezvous.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EE4FB5736CF8B7409343F90B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2EAAB3416707C7A2A5573414 /* Pods_Rendezvous.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,9 +143,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73D9C1EC1CC3213000659718 /* Build configuration list for PBXNativeTarget "Rendezvous" */;
 			buildPhases = (
+				3F3932CC78FF2596074B72D4 /* Check Pods Manifest.lock */,
 				73D9C1D31CC3213000659718 /* Sources */,
 				73D9C1D41CC3213000659718 /* Frameworks */,
 				73D9C1D51CC3213000659718 /* Resources */,
+				B7846DA0BB3E5C30FEDD78CB /* Embed Pods Frameworks */,
+				F1B978540AC02544D7973DBD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -148,24 +200,75 @@
 			files = (
 				73D9C1F11CC35D4600659718 /* Rendezvous Logo.png in Resources */,
 				73D9C1E81CC3213000659718 /* LaunchScreen.storyboard in Resources */,
+				73D9C1FD1CC3F39E00659718 /* SignUp.storyboard in Resources */,
+				73C93F791CC58EA100F62717 /* Launch Buttons.png in Resources */,
 				73D9C1E51CC3213000659718 /* Assets.xcassets in Resources */,
-				73D9C1F81CC3EC8000659718 /* SignUp.storyboard in Resources */,
-				73D9C1F31CC3626F00659718 /* Launch Buttons.png in Resources */,
-				73D9C1F61CC3EC4900659718 /* LogIn.storyboard in Resources */,
+				73C93F7D1CC5D11500F62717 /* Invalid Button.png in Resources */,
 				73D9C1E01CC3213000659718 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3F3932CC78FF2596074B72D4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B7846DA0BB3E5C30FEDD78CB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1B978540AC02544D7973DBD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		73D9C1D31CC3213000659718 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73C93F7B1CC5935600F62717 /* SetEmailViewController.swift in Sources */,
 				73D9C1E31CC3213000659718 /* Rendezvous.xcdatamodeld in Sources */,
+				73C93F801CC5F88200F62717 /* SetPasswordViewController.swift in Sources */,
 				73D9C1DD1CC3213000659718 /* ViewController.swift in Sources */,
 				73D9C1DB1CC3213000659718 /* AppDelegate.swift in Sources */,
+				73D9C1FA1CC3F0EB00659718 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,12 +291,12 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		73D9C1F41CC3EC4900659718 /* LogIn.storyboard */ = {
+		73D9C1FB1CC3F39E00659718 /* SignUp.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				73D9C1F51CC3EC4900659718 /* Base */,
+				73D9C1FC1CC3F39E00659718 /* Base */,
 			);
-			name = LogIn.storyboard;
+			name = SignUp.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -282,6 +385,7 @@
 		};
 		73D9C1ED1CC3213000659718 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71FFDD4A27F95772245F48BE /* Pods-Rendezvous.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Rendezvous/Info.plist;
@@ -293,6 +397,7 @@
 		};
 		73D9C1EE1CC3213000659718 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8FAFE40AC040E0CBA96CA55 /* Pods-Rendezvous.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Rendezvous/Info.plist;
@@ -321,6 +426,7 @@
 				73D9C1EE1CC3213000659718 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
