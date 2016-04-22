@@ -7,18 +7,27 @@
 //
 
 import UIKit
+import Firebase
 
 class SetProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, CropPhotoViewControllerDelegate {
 
+    // FIREBASE URL
+    let ref = Firebase(url:"https://resplendent-torch-7790.firebaseio.com/")
+    
+    
     var firstName: String!
     var lastName: String!
     
     var image: UIImage!     // image for profile picture
 
+    @IBOutlet var continueButton: UIButton!
     
     @IBOutlet var profilePicture: UIImageView!
     
     @IBOutlet var initials: UILabel!
+    
+    
+    
     
     /*
     * Action to select photo for profile picture
@@ -43,15 +52,16 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
     */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        self.dismissViewControllerAnimated(true, completion:nil)
         self.image = image
-        
+        self.dismissViewControllerAnimated(false, completion:nil)
         performSegueWithIdentifier("CropPhotoSegue", sender: self)
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        continueButton.userInteractionEnabled = false
+        continueButton.alpha = 0.25
         
         // placeholder text
         navigationController?.navigationBarHidden = true
@@ -94,6 +104,32 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
         //newUser.setProfilePicture(self.image)
     }
     
+    /*
+    * Called in CropPhotoViewController to enable the continue button
+    */
+    func enableContinue() {
+        continueButton.userInteractionEnabled = true
+        continueButton.alpha = 1
+    }
+    
+
+    @IBAction func setPhoto(sender: AnyObject) {
+        
+        let authData = ref.authData
+        let data = UIImageJPEGRepresentation(image,0.1)!
+        let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        
+        let user: NSDictionary = ["Profile Picture":base64String]
+        ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(user)
+        
+        performSegueWithIdentifier("AddContactsSegue", sender: self)
+        
+    }
+    
+    
+    @IBAction func skipSetPhoto(sender: AnyObject) {
+        performSegueWithIdentifier("AddContactsSegue", sender: self)
+    }
     
     // MARK: - Navigation
     

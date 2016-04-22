@@ -16,6 +16,7 @@ import UIKit
 protocol CropPhotoViewControllerDelegate {
     func sendPhoto(var image: UIImage)  // send the cropped image back to SetProfileViewContrller
     func cancelPhoto()
+    func enableContinue()
 }
 
 
@@ -221,6 +222,7 @@ class CropPhotoViewController: UIViewController, UIScrollViewDelegate, UIGesture
     func done(sender: UIButton!) {
         croppedPhoto = cropPhoto()
         delegate.sendPhoto(croppedPhoto)
+        delegate.enableContinue()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

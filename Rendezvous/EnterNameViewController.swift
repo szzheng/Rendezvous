@@ -19,7 +19,6 @@ class EnterNameViewController: UIViewController {
     var firstNameTrimmed: String!
     var lastNameTrimmed: String!
     
-    // Get a reference to registered emails
     let ref = Firebase(url:"https://resplendent-torch-7790.firebaseio.com/")
     
     override func viewDidLoad() {

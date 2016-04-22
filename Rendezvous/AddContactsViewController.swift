@@ -32,6 +32,7 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
+            controller.searchBar.placeholder = "Search by email"
             
             self.contactTableView.tableHeaderView = controller.searchBar
             

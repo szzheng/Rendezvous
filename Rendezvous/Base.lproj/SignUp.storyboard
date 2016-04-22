@@ -414,15 +414,18 @@
                                     <constraint firstAttribute="width" constant="150" id="tPE-kt-KDL"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi2-HV-RCC">
-                                <rect key="frame" x="130" y="390" width="115" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi2-HV-RCC">
+                                <rect key="frame" x="96" y="376" width="184" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="115" id="ELi-5q-jwq"/>
                                     <constraint firstAttribute="height" constant="33" id="NEH-OJ-DXN"/>
                                 </constraints>
-                                <state key="normal" title="Continue" backgroundImage="Launch Buttons.png">
+                                <state key="normal" title="Set Photo" backgroundImage="Launch Buttons.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="setPhoto:" destination="qAv-oj-YyM" eventType="touchUpInside" id="3n4-YC-7Mx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ibl-wj-573">
                                 <rect key="frame" x="141" y="445" width="93" height="30"/>
@@ -431,6 +434,9 @@
                                     <constraint firstAttribute="height" constant="30" id="MXM-7m-diT"/>
                                 </constraints>
                                 <state key="normal" title="Skip this step"/>
+                                <connections>
+                                    <action selector="skipSetPhoto:" destination="qAv-oj-YyM" eventType="touchUpInside" id="zxh-FS-uE1"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="278-CF-upy">
                                 <rect key="frame" x="112" y="159" width="150" height="150"/>
@@ -477,9 +483,10 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="continueButton" destination="Wi2-HV-RCC" id="qFN-Kf-6U2"/>
                         <outlet property="initials" destination="278-CF-upy" id="RWT-jX-WqZ"/>
                         <outlet property="profilePicture" destination="DLA-RE-7I4" id="DvT-0t-UIf"/>
-                        <segue destination="udm-og-Ofn" kind="show" id="X8F-mG-LTU"/>
+                        <segue destination="udm-og-Ofn" kind="show" identifier="AddContactsSegue" id="X8F-mG-LTU"/>
                         <segue destination="qyu-zf-VzU" kind="presentation" identifier="CropPhotoSegue" id="5dc-wj-cpf"/>
                     </connections>
                 </viewController>
@@ -518,18 +525,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" placeholder="Search by name or email" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-J2-Iqu">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="tqL-7w-ylJ"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="udm-og-Ofn" id="Jz4-NI-7QC"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MGJ-wW-cuz" customClass="Add">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="FSa-mv-ddL">
@@ -549,16 +546,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6hJ-bE-u2Y" firstAttribute="top" secondItem="MGJ-wW-cuz" secondAttribute="bottom" id="1KE-z9-rQg"/>
                             <constraint firstItem="JuS-BB-5fE" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leading" id="41a-eS-Un8"/>
-                            <constraint firstItem="MGJ-wW-cuz" firstAttribute="top" secondItem="RhO-J2-Iqu" secondAttribute="bottom" id="Ldu-1h-eKK"/>
-                            <constraint firstItem="RhO-J2-Iqu" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leading" id="XJO-Tb-pMe"/>
+                            <constraint firstItem="6hJ-bE-u2Y" firstAttribute="top" secondItem="MGJ-wW-cuz" secondAttribute="bottom" id="OVV-8S-ytv"/>
+                            <constraint firstAttribute="trailing" secondItem="MGJ-wW-cuz" secondAttribute="trailing" id="RTk-qc-EaT"/>
+                            <constraint firstItem="MGJ-wW-cuz" firstAttribute="top" secondItem="JuS-BB-5fE" secondAttribute="bottom" id="ZdU-Y9-3jK"/>
                             <constraint firstAttribute="trailing" secondItem="JuS-BB-5fE" secondAttribute="trailing" id="foN-55-pAy"/>
-                            <constraint firstAttribute="trailing" secondItem="MGJ-wW-cuz" secondAttribute="trailing" id="jR8-KU-aMP"/>
+                            <constraint firstItem="MGJ-wW-cuz" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leading" id="gmw-yR-yze"/>
                             <constraint firstItem="JuS-BB-5fE" firstAttribute="top" secondItem="BVX-0R-3Eg" secondAttribute="bottom" id="mwD-yO-Lnc"/>
-                            <constraint firstItem="MGJ-wW-cuz" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leading" id="tCx-eq-81G"/>
-                            <constraint firstItem="RhO-J2-Iqu" firstAttribute="top" secondItem="JuS-BB-5fE" secondAttribute="bottom" id="vzC-a9-xDg"/>
-                            <constraint firstAttribute="trailing" secondItem="RhO-J2-Iqu" secondAttribute="trailing" id="wZJ-L1-e4U"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -571,7 +565,6 @@
                 <searchDisplayController id="iOq-SB-Chs">
                     <connections>
                         <outlet property="delegate" destination="udm-og-Ofn" id="uki-lE-y3M"/>
-                        <outlet property="searchBar" destination="RhO-J2-Iqu" id="KRW-dd-gf8"/>
                         <outlet property="searchContentsController" destination="udm-og-Ofn" id="bvn-V4-jdN"/>
                         <outlet property="searchResultsDataSource" destination="udm-og-Ofn" id="pLc-JC-l7c"/>
                         <outlet property="searchResultsDelegate" destination="udm-og-Ofn" id="dML-OP-k9E"/>

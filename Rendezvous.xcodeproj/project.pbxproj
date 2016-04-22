@@ -70,13 +70,13 @@
 			isa = PBXGroup;
 			children = (
 				73D9C1FB1CC3F39E00659718 /* SignUp.storyboard */,
-				73B0AC171CCAC8B6001D2D73 /* CropPhotoViewController.swift */,
 				73C93F7A1CC5935600F62717 /* SetEmailViewController.swift */,
 				73C93F7F1CC5F88200F62717 /* SetPasswordViewController.swift */,
 				73124CBD1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift */,
 				73B0AC0D1CCA9AE4001D2D73 /* AddContactsViewController.swift */,
 				73B0AC131CCAAEAA001D2D73 /* EnterNameViewController.swift */,
 				73B0AC151CCAAEB9001D2D73 /* SetProfileViewController.swift */,
+				73B0AC171CCAC8B6001D2D73 /* CropPhotoViewController.swift */,
 			);
 			name = "Sign Up";
 			sourceTree = "<group>";
