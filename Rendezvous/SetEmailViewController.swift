@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 class SetEmailViewController: UIViewController {
-
+    var activityIndicator = UIActivityIndicatorView()
     var firstTime: Bool!
     
     @IBOutlet var errorMessage: UILabel!
@@ -51,11 +51,15 @@ class SetEmailViewController: UIViewController {
     // Submit Email
     @IBAction func `continue`(sender: AnyObject) {
         
-        var error: Bool!
+        displayActivityIndicator()
         
         // Email already taken
-        ref.queryOrderedByChild("email").queryEqualToValue(emailAddress.text!).observeEventType(.ChildAdded, withBlock: { snapshot in
-            if (snapshot.exists()) {
+        ref.queryOrderedByChild("email").queryEqualToValue(emailAddress.text!).observeEventType(.Value, withBlock: { snapshot in
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            
+            if !(snapshot.value is NSNull) {
                 self.continueButton.alpha = 0.25
                 self.continueButton.userInteractionEnabled = false
                 
@@ -63,25 +67,17 @@ class SetEmailViewController: UIViewController {
                 self.errorMessage.text = "Email already registered"
                 self.disableContinue()
                 
-                error = true
+            } else if (!self.isValidEmail(self.emailAddress.text!)) {
+                self.errorMessage.hidden = false
+                self.errorMessage.text = "Please enter a valid email"
+                self.disableContinue()
+            } else {
                 
-                print("HI")
+                self.errorMessage.hidden = true
+                self.performSegueWithIdentifier("SetPasswordSegue", sender: self)
             }
+
         })
-        
-        // Email is of invalid format
-        if (!isValidEmail(emailAddress.text!)) {
-            self.errorMessage.hidden = false
-            self.errorMessage.text = "Please enter a valid email"
-            disableContinue()
-            error = true
-        }
-        
-        
-        if (error != true) {
-            errorMessage.hidden = true
-            performSegueWithIdentifier("SetPasswordSegue", sender: self)
-        }
     }
     
     // Checks validity of email format
@@ -115,7 +111,16 @@ class SetEmailViewController: UIViewController {
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
-
+    
+    func displayActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
     
     // MARK: - Navigation
 

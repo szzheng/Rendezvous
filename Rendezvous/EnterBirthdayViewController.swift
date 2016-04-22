@@ -11,6 +11,9 @@ import Firebase
 
 class EnterBirthdayViewController: UIViewController {
     
+    let ref = Firebase(url: "https://resplendent-torch-7790.firebaseio.com/")
+    
+    var activityIndicator = UIActivityIndicatorView()
     var email: String!
     var password: String!
     @IBOutlet var errorMessage: UILabel!
@@ -71,7 +74,10 @@ class EnterBirthdayViewController: UIViewController {
             signUpButton.alpha = 0.25
             errorMessage.hidden = false
         } else {
-            createUser()
+            displayActivityIndicator()
+            createUserAndLogIn()
+            
+            //performSegueWithIdentifier("EnterNameSegue", sender: self)
         }
     }
     
@@ -81,11 +87,15 @@ class EnterBirthdayViewController: UIViewController {
         errorMessage.hidden = true
     }
     
-    func createUser() -> Void {
-        let ref = Firebase(url: "https://resplendent-torch-7790.firebaseio.com/")
+    func createUserAndLogIn() -> Void {
+
         ref.createUser(email, password: password  ,
             withValueCompletionBlock: { error, result in
+                
                 if error != nil {
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    
                     // There was an error creating the account
                     if let errorCode = FAuthenticationError(rawValue: error.code) {
                         switch (errorCode) {
@@ -130,9 +140,6 @@ class EnterBirthdayViewController: UIViewController {
                             print(16)
                         case .Unknown:
                             print(17)
-                            
-                        default:
-                            print("Handle default situation")
                         }
                     }
                 } else {
@@ -143,10 +150,36 @@ class EnterBirthdayViewController: UIViewController {
                     let newChildRef = userEmailRef.childByAutoId()
                     let newVal = ["email": self.email]
                     newChildRef.setValue(newVal)
+                    
+                    
+                    self.ref.authUser(self.email, password: self.password) {
+                        error, authData in
+                        
+                        self.activityIndicator.stopAnimating()
+                        UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                        if error != nil {
+                            // an error occured while attempting login
+                            print("Error login")
+                        } else {
+                            // user is logged in, check authData for data
+                            self.performSegueWithIdentifier("EnterNameSegue", sender: self)
+                        }
+                    }
                 }
         })
         
     }
+    
+    func displayActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+    }
+
 
     /*
     // MARK: - Navigation
