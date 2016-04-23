@@ -64,7 +64,9 @@ class EnterNameViewController: UIViewController {
             // Create a child path with a key set to the uid underneath the "users" node
             // This creates a URL path like the following:
             //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
-            ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
+            let email = authData.providerData["email"] as! String
+            let adjustedEmail = escapeEmailAddress(email)
+            ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).updateChildValues(newUser)
             
             
             
@@ -91,6 +93,14 @@ class EnterNameViewController: UIViewController {
             disableContinue()
         }
         
+    }
+    
+    func escapeEmailAddress(email: String) -> String {
+        
+        // Replace '.' (not allowed in a Firebase key) with ',' (not allowed in an email address)
+        var adjustedEmail = email.lowercaseString
+        adjustedEmail = email.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        return adjustedEmail
     }
     
     // Disables user from submitting email

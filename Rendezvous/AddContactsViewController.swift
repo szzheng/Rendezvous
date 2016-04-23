@@ -7,41 +7,33 @@
 //
 
 import UIKit
+import Firebase
 
-class AddContactsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class AddContactsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, UISearchBarDelegate {
 
-    @IBOutlet var contactTableView: UITableView!
+    var dataArray = [String]()
     
-    var contactsArray = [String]()
-    var filteredContacts = [String]()
-    var resultSearchController = UISearchController()
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var filteredArray = [String]()
+    
+    var shouldShowSearchResults = false
+    
+    let usersRef = Firebase(url:"https://resplendent-torch-7790.firebaseio.com/users")
+    
+    
+    var searchController: UISearchController!
+    
 
-        // Do any additional setup after loading the view.
+    @IBOutlet var searchResults: UITableView!
+    
+    override func viewDidLoad() {
+        searchResults.delegate = self
+        searchResults.dataSource = self
         
-        self.contactsArray += ["Roger Federer"]
-        self.contactsArray += ["Rafael Nadal"]
-        self.contactsArray += ["Novak Djokovic"]
-        self.contactsArray += ["Andy Murray "]
-        self.contactsArray += ["Kei Nishikori"]
-        self.contactsArray += ["Juan Martin delPotro"]
+        //loadListOfUsers()
+        configureSearchController()
         
-        self.resultSearchController = ({
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.dimsBackgroundDuringPresentation = false
-            controller.searchBar.sizeToFit()
-            controller.searchBar.placeholder = "Search by email"
-            
-            self.contactTableView.tableHeaderView = controller.searchBar
-            
-            return controller
-        })()
-        
-        
-        // Reload the table
-        self.contactTableView.reloadData()
+        searchResults.tableFooterView = UIView()
+        searchResults.layoutMargins = UIEdgeInsetsZero;
         
     }
 
@@ -51,45 +43,111 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        shouldShowSearchResults = true
+        searchResults.reloadData()
+    }
+    
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        shouldShowSearchResults = false
+        searchResults.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if !shouldShowSearchResults {
+            shouldShowSearchResults = true
+            searchResults.reloadData()
+        }
+        
+        searchController.searchBar.resignFirstResponder()
+    }
+    
+    func configureSearchController() {
+        
+        // Initialize and perform a minimum configuration to the search controller.
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search here..."
+        searchController.searchBar.delegate = self
+        searchController.searchBar.sizeToFit()
+        
+        // Place the search bar view to the tableview headerview.
+        searchResults.tableHeaderView = searchController.searchBar
+    }
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchString = searchController.searchBar.text
+        
+        // Filter the data array and get only those countries that match the search text.
+        /*
+        filteredArray = dataArray.filter({ (personName) -> Bool in
+            let personNameText: NSString = personName
+            
+            return (personNameText.rangeOfString(searchString!, options: NSStringCompareOptions.CaseInsensitiveSearch).location) != NSNotFound
+        })*/
+        
+        // Reload the tableview.
+        var found = false
+        usersRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
+            if let email = snapshot.value["email"] as? String {
+                if (email == searchString) {
+                    print("equal")
+                    print(self.shouldShowSearchResults)
+                    self.filteredArray += [email]
+                    print(self.filteredArray.count)
+                    
+                    self.searchResults.reloadData()
+                    found = true
+                }
+                if (found != true) {
+                    print("none found")
+                    self.filteredArray = []
+                    self.searchResults.reloadData()
+                }
+            }
+        })
+        
+        //searchResults.reloadData()
+    }
+    
+    
+    // MARK: UITableView Delegate and Datasource functions
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if (self.resultSearchController.active) {
-            return self.filteredContacts.count
-        } else {
-            return self.contactsArray.count
-        }
-    }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        
-        // 3
-        if (self.resultSearchController.active) {
-            cell.textLabel?.text = filteredContacts[indexPath.row]
-            
-            return cell
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if shouldShowSearchResults {
+            if (filteredArray.count > 1) {
+                return 1
+            }
+            return filteredArray.count
         }
         else {
-            cell.textLabel?.text = contactsArray[indexPath.row]
-            
-            return cell
+            return 0
         }
-
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        filteredContacts.removeAll(keepCapacity: false)
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("idCell", forIndexPath: indexPath)
         
-        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-        let array = (contactsArray as NSArray).filteredArrayUsingPredicate(searchPredicate)
-        filteredContacts = array as! [String]
-        self.contactTableView.reloadData()
+        if shouldShowSearchResults {
+            cell.textLabel?.text = filteredArray[indexPath.row]
+        }
+        else {
+            cell.textLabel?.text = dataArray[indexPath.row]
+        }
+        
+        return cell
+        
     }
+
+    
     
 
     /*

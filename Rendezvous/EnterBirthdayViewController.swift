@@ -151,6 +151,10 @@ class EnterBirthdayViewController: UIViewController {
                     let newVal = ["email": self.email]
                     newChildRef.setValue(newVal)
                     
+                    let newUser = ["email": self.email]
+                    let adjustedEmail = self.escapeEmailAddress(self.email)
+                    self.ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).setValue(newUser)
+                    
                     
                     self.ref.authUser(self.email, password: self.password) {
                         error, authData in
@@ -169,6 +173,15 @@ class EnterBirthdayViewController: UIViewController {
         })
         
     }
+    
+    func escapeEmailAddress(email: String) -> String {
+        
+        // Replace '.' (not allowed in a Firebase key) with ',' (not allowed in an email address)
+        var adjustedEmail = email.lowercaseString
+        adjustedEmail = email.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        return adjustedEmail
+    }
+    
     
     func displayActivityIndicator() {
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))

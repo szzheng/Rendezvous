@@ -119,11 +119,21 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
         let data = UIImageJPEGRepresentation(image,0.1)!
         let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         
-        let user: NSDictionary = ["Profile Picture":base64String]
-        ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(user)
+        let user = ["Profile Picture":base64String]
+        let email = authData.providerData["email"] as! String
+        let adjustedEmail = escapeEmailAddress(email)
+        ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).updateChildValues(user)
         
         performSegueWithIdentifier("AddContactsSegue", sender: self)
         
+    }
+    
+    func escapeEmailAddress(email: String) -> String {
+        
+        // Replace '.' (not allowed in a Firebase key) with ',' (not allowed in an email address)
+        var adjustedEmail = email.lowercaseString
+        adjustedEmail = email.stringByReplacingOccurrencesOfString(".", withString: ",", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        return adjustedEmail
     }
     
     
