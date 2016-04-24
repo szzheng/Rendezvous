@@ -25,6 +25,9 @@
 		73D9C1F11CC35D4600659718 /* Rendezvous Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */; };
 		73D9C1FA1CC3F0EB00659718 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9C1F91CC3F0EB00659718 /* HomeViewController.swift */; };
 		73D9C1FD1CC3F39E00659718 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73D9C1FB1CC3F39E00659718 /* SignUp.storyboard */; };
+		73E045D71CCC76AC00866B63 /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E045D61CCC76AC00866B63 /* ProfilePicture.swift */; };
+		73E045D91CCC78DA00866B63 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E045D81CCC78DA00866B63 /* Name.swift */; };
+		73E045DB1CCC7C5700866B63 /* AddContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E045DA1CCC7C5700866B63 /* AddContactCell.swift */; };
 		9CF794773095D4FF5B0C6E1A /* Pods_Rendezvous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EAAB3416707C7A2A5573414 /* Pods_Rendezvous.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,9 @@
 		73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rendezvous Logo.png"; sourceTree = "<group>"; };
 		73D9C1F91CC3F0EB00659718 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		73D9C1FC1CC3F39E00659718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignUp.storyboard; sourceTree = "<group>"; };
+		73E045D61CCC76AC00866B63 /* ProfilePicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
+		73E045D81CCC78DA00866B63 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
+		73E045DA1CCC7C5700866B63 /* AddContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactCell.swift; sourceTree = "<group>"; };
 		F8FAFE40AC040E0CBA96CA55 /* Pods-Rendezvous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +110,7 @@
 			children = (
 				73D9C1DA1CC3213000659718 /* AppDelegate.swift */,
 				73D9C1DC1CC3213000659718 /* ViewController.swift */,
+				73E045D31CCC764100866B63 /* Base Classes */,
 				73D9C1FE1CC3F72900659718 /* Main */,
 				73C93F7E1CC5F39700F62717 /* Sign Up */,
 				73D9C1E41CC3213000659718 /* Assets.xcassets */,
@@ -132,6 +139,16 @@
 				73D9C1DE1CC3213000659718 /* Main.storyboard */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		73E045D31CCC764100866B63 /* Base Classes */ = {
+			isa = PBXGroup;
+			children = (
+				73E045D61CCC76AC00866B63 /* ProfilePicture.swift */,
+				73E045D81CCC78DA00866B63 /* Name.swift */,
+				73E045DA1CCC7C5700866B63 /* AddContactCell.swift */,
+			);
+			name = "Base Classes";
 			sourceTree = "<group>";
 		};
 		E224B6D8F599B5F498F58733 /* Pods */ = {
@@ -278,10 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E045DB1CCC7C5700866B63 /* AddContactCell.swift in Sources */,
 				73B0AC141CCAAEAA001D2D73 /* EnterNameViewController.swift in Sources */,
 				73B0AC161CCAAEB9001D2D73 /* SetProfileViewController.swift in Sources */,
 				73C93F7B1CC5935600F62717 /* SetEmailViewController.swift in Sources */,
 				73B0AC0E1CCA9AE4001D2D73 /* AddContactsViewController.swift in Sources */,
+				73E045D71CCC76AC00866B63 /* ProfilePicture.swift in Sources */,
 				73D9C1E31CC3213000659718 /* Rendezvous.xcdatamodeld in Sources */,
 				73C93F801CC5F88200F62717 /* SetPasswordViewController.swift in Sources */,
 				73D9C1DD1CC3213000659718 /* ViewController.swift in Sources */,
@@ -289,6 +308,7 @@
 				73B0AC181CCAC8B6001D2D73 /* CropPhotoViewController.swift in Sources */,
 				73D9C1DB1CC3213000659718 /* AppDelegate.swift in Sources */,
 				73D9C1FA1CC3F0EB00659718 /* HomeViewController.swift in Sources */,
+				73E045D91CCC78DA00866B63 /* Name.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

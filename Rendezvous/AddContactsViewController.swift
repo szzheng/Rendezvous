@@ -35,6 +35,9 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
         searchResults.tableFooterView = UIView()
         searchResults.layoutMargins = UIEdgeInsetsZero;
         
+        searchController.searchBar.becomeFirstResponder()
+        searchController.searchBar.autocapitalizationType = UITextAutocapitalizationType.None
+        
     }
 
     override func didReceiveMemoryWarning() {

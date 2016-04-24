@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="muX-CU-yNp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="muX-CU-yNp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SF-UI-Display-Light.otf">
+            <string>SFUIDisplay-Light</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Display-Regular.otf">
+            <string>SFUIDisplay-Regular</string>
+            <string>SFUIDisplay-Regular</string>
+        </mutableArray>
+        <mutableArray key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+            <string>SFUIText-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Set Email View Controller-->
         <scene sceneID="IIf-Ih-mhL">
@@ -296,7 +311,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your new account is almost ready!                                Please let us know what to call you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMn-kD-YqW">
                                 <rect key="frame" x="20" y="74" width="335" height="62"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Rq-40-MPd">
@@ -388,23 +403,12 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2: Set your profile picture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1YM-ey-WGn">
-                                <rect key="frame" x="70" y="31" width="234" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="MMQ-YW-asp"/>
-                                    <constraint firstAttribute="width" constant="234" id="gce-St-h8q"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on the frame to set your picture:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smt-vm-xzh">
                                 <rect key="frame" x="20" y="74" width="335" height="62"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="aX9-6d-RwW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DLA-RE-7I4">
@@ -444,7 +448,7 @@
                                     <constraint firstAttribute="width" constant="150" id="j6d-w0-AaY"/>
                                     <constraint firstAttribute="height" constant="150" id="vjk-SU-BxL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="65"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Light" family="SF UI Display" pointSize="65"/>
                                 <color key="textColor" red="0.5692508012820513" green="0.5692508012820513" blue="0.5692508012820513" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -458,6 +462,16 @@
                                     <action selector="choosePhoto:" destination="qAv-oj-YyM" eventType="touchUpInside" id="94s-wg-AMy"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 2: Set your profile picture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1YM-ey-WGn">
+                                <rect key="frame" x="59" y="31" width="257" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="257" id="C4n-wt-MFH"/>
+                                    <constraint firstAttribute="height" constant="21" id="LTP-05-Xph"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -468,7 +482,7 @@
                             <constraint firstItem="DLA-RE-7I4" firstAttribute="centerX" secondItem="3PI-UN-Hcm" secondAttribute="centerX" id="FzJ-8e-Tns"/>
                             <constraint firstAttribute="trailing" secondItem="smt-vm-xzh" secondAttribute="trailing" constant="20" id="HJo-fi-mzW"/>
                             <constraint firstItem="PgA-CV-ocy" firstAttribute="centerX" secondItem="3PI-UN-Hcm" secondAttribute="centerX" id="HQH-FN-Fot"/>
-                            <constraint firstItem="1YM-ey-WGn" firstAttribute="top" secondItem="vEH-wE-W4Q" secondAttribute="bottom" constant="11" id="IYf-JV-aPJ"/>
+                            <constraint firstItem="1YM-ey-WGn" firstAttribute="centerX" secondItem="3PI-UN-Hcm" secondAttribute="centerX" id="I68-gV-Dbd"/>
                             <constraint firstItem="Wi2-HV-RCC" firstAttribute="centerX" secondItem="3PI-UN-Hcm" secondAttribute="centerX" id="Kv8-eJ-GSO"/>
                             <constraint firstItem="smt-vm-xzh" firstAttribute="top" secondItem="Zsg-XK-grg" secondAttribute="bottom" constant="10" id="Ub6-GZ-udn"/>
                             <constraint firstItem="PgA-CV-ocy" firstAttribute="top" secondItem="smt-vm-xzh" secondAttribute="bottom" constant="23" id="Unq-Eh-roz"/>
@@ -476,8 +490,8 @@
                             <constraint firstAttribute="trailing" secondItem="Zsg-XK-grg" secondAttribute="trailing" id="pze-wr-PoW"/>
                             <constraint firstItem="278-CF-upy" firstAttribute="top" secondItem="smt-vm-xzh" secondAttribute="bottom" constant="23" id="qhJ-6P-KoA"/>
                             <constraint firstItem="278-CF-upy" firstAttribute="centerX" secondItem="3PI-UN-Hcm" secondAttribute="centerX" id="tSB-Go-BSK"/>
-                            <constraint firstItem="1YM-ey-WGn" firstAttribute="centerX" secondItem="3PI-UN-Hcm" secondAttribute="centerX" id="tjm-U3-JT2"/>
                             <constraint firstItem="Zsg-XK-grg" firstAttribute="top" secondItem="vEH-wE-W4Q" secondAttribute="bottom" id="uLY-Ia-Eqf"/>
+                            <constraint firstItem="1YM-ey-WGn" firstAttribute="top" secondItem="vEH-wE-W4Q" secondAttribute="bottom" constant="11" id="wjN-T4-Hhb"/>
                             <constraint firstItem="DLA-RE-7I4" firstAttribute="top" secondItem="smt-vm-xzh" secondAttribute="bottom" constant="23" id="wxF-OR-pNp"/>
                         </constraints>
                     </view>
@@ -525,30 +539,71 @@
                                     <constraint firstAttribute="height" constant="21" id="4RZ-Nd-dFO"/>
                                     <constraint firstAttribute="width" constant="199" id="NJE-Iz-Noo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIDisplay-Regular" family="SF UI Display" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search by email or phone number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVN-I5-uaP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search by email or phone number" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVN-I5-uaP">
                                 <rect key="frame" x="0.0" y="64" width="375" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="dNl-Kf-CcD"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cff-IJ-qGV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cff-IJ-qGV">
                                 <rect key="frame" x="-4" y="99" width="383" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idCell" id="5o7-qS-la7">
-                                        <rect key="frame" x="0.0" y="28" width="383" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="idCell" rowHeight="80" id="5o7-qS-la7" customClass="AddContactCell" customModule="Rendezvous" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="383" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5o7-qS-la7" id="zMk-cZ-PXC">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ql1-ha-l2o" customClass="ProfilePicture" customModule="Rendezvous" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="2" width="75" height="75"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="75" id="8Ks-Om-RwZ"/>
+                                                        <constraint firstAttribute="height" constant="75" id="u4y-3O-xGn"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steven Zheng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0me-uI-1w7">
+                                                    <rect key="frame" x="98" y="29" width="191" height="20.5"/>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM6-QZ-858">
+                                                    <rect key="frame" x="291" y="24" width="84" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="RWB-qW-wHc"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                    <state key="normal" title="+ Add">
+                                                        <color key="titleColor" red="0.92725183820000001" green="0.1718476773335855" blue="0.20658503409358817" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="addContact:" destination="5o7-qS-la7" eventType="touchUpInside" id="qPf-Hz-osV"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ql1-ha-l2o" firstAttribute="centerY" secondItem="zMk-cZ-PXC" secondAttribute="centerY" id="Joz-85-aeM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0me-uI-1w7" secondAttribute="trailing" constant="86" id="Ynh-OG-w5y"/>
+                                                <constraint firstItem="IM6-QZ-858" firstAttribute="leading" secondItem="0me-uI-1w7" secondAttribute="trailing" constant="2" id="aNv-NO-uGW"/>
+                                                <constraint firstItem="ql1-ha-l2o" firstAttribute="leading" secondItem="zMk-cZ-PXC" secondAttribute="leadingMargin" constant="7" id="b9O-dg-Iem"/>
+                                                <constraint firstItem="IM6-QZ-858" firstAttribute="trailing" secondItem="zMk-cZ-PXC" secondAttribute="trailingMargin" id="eNc-NT-M91"/>
+                                                <constraint firstItem="IM6-QZ-858" firstAttribute="centerY" secondItem="zMk-cZ-PXC" secondAttribute="centerY" id="h6d-LK-es3"/>
+                                                <constraint firstItem="0me-uI-1w7" firstAttribute="leading" secondItem="ql1-ha-l2o" secondAttribute="trailing" constant="8" id="nIM-y7-O7e"/>
+                                                <constraint firstItem="0me-uI-1w7" firstAttribute="centerY" secondItem="zMk-cZ-PXC" secondAttribute="centerY" id="s3E-wc-zS5"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addButton" destination="IM6-QZ-858" id="Sut-9o-NHY"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -633,7 +688,7 @@
                                     <constraint firstAttribute="height" constant="40" id="pta-2h-KBY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coE-0B-qg9">
