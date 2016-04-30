@@ -11,7 +11,7 @@ import Firebase
 
 class EnterBirthdayViewController: UIViewController {
     
-    let ref = Firebase(url: "https://resplendent-torch-7790.firebaseio.com/")
+    let ref = Firebase(url: "https://rendezvous-app.firebaseio.com/")
     
     var activityIndicator = UIActivityIndicatorView()
     var email: String!
@@ -146,7 +146,7 @@ class EnterBirthdayViewController: UIViewController {
                     let uid = result["uid"] as? String
                     print("Successfully created user account with uid: \(uid)")
                     
-                    let userEmailRef = Firebase(url: "https://resplendent-torch-7790.firebaseio.com/user-emails")
+                    let userEmailRef = Firebase(url: "https://rendezvous-app.firebaseio.com/user-emails")
                     let newChildRef = userEmailRef.childByAutoId()
                     let newVal = ["email": self.email]
                     newChildRef.setValue(newVal)

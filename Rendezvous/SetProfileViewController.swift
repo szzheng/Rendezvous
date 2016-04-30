@@ -12,7 +12,7 @@ import Firebase
 class SetProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, CropPhotoViewControllerDelegate {
 
     // FIREBASE URL
-    let ref = Firebase(url:"https://resplendent-torch-7790.firebaseio.com/")
+    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
     
     
     var firstName: String!
@@ -116,7 +116,7 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
     @IBAction func setPhoto(sender: AnyObject) {
         
         let authData = ref.authData
-        let data = UIImageJPEGRepresentation(image,0.1)!
+        let data = UIImagePNGRepresentation(image)!
         let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         
         let user = ["Profile Picture":base64String]
@@ -156,6 +156,13 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
             cropPhotoViewController.photo = image
             cropPhotoViewController.delegate = self
         }
+        /*
+        if (segue.identifier == "AddContactsSegue") {
+            
+            let addContactsVC = segue.destinationViewController as! AddContactsViewController
+            
+            addContactsVC.usersRef = ref
+        }*/
         
     }
 

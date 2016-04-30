@@ -19,7 +19,7 @@ class EnterNameViewController: UIViewController {
     var firstNameTrimmed: String!
     var lastNameTrimmed: String!
     
-    let ref = Firebase(url:"https://resplendent-torch-7790.firebaseio.com/")
+    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,11 +66,12 @@ class EnterNameViewController: UIViewController {
             //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
             let email = authData.providerData["email"] as! String
             let adjustedEmail = escapeEmailAddress(email)
+            performSegueWithIdentifier("SetProfileSegue", sender: self)
             ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).updateChildValues(newUser)
             
             
             
-            performSegueWithIdentifier("SetProfileSegue", sender: self)
+            //performSegueWithIdentifier("SetProfileSegue", sender: self)
         }
     }
     

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		73124CBE1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73124CBD1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift */; };
+		738F48D51CD2AEFD00CDE24B /* Siberian Husky.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 738F48D41CD2AEFD00CDE24B /* Siberian Husky.jpg */; };
 		73B0AC0E1CCA9AE4001D2D73 /* AddContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC0D1CCA9AE4001D2D73 /* AddContactsViewController.swift */; };
 		73B0AC141CCAAEAA001D2D73 /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC131CCAAEAA001D2D73 /* EnterNameViewController.swift */; };
 		73B0AC161CCAAEB9001D2D73 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC151CCAAEB9001D2D73 /* SetProfileViewController.swift */; };
@@ -28,6 +29,8 @@
 		73E045D71CCC76AC00866B63 /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E045D61CCC76AC00866B63 /* ProfilePicture.swift */; };
 		73E045D91CCC78DA00866B63 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E045D81CCC78DA00866B63 /* Name.swift */; };
 		73E045DB1CCC7C5700866B63 /* AddContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E045DA1CCC7C5700866B63 /* AddContactCell.swift */; };
+		73F7DDFC1CD517D500F03857 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73F7DDFA1CD517D500F03857 /* LogIn.storyboard */; };
+		73F7DDFF1CD51A8B00F03857 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F7DDFE1CD51A8B00F03857 /* LogInViewController.swift */; };
 		9CF794773095D4FF5B0C6E1A /* Pods_Rendezvous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EAAB3416707C7A2A5573414 /* Pods_Rendezvous.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +38,7 @@
 		2EAAB3416707C7A2A5573414 /* Pods_Rendezvous.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rendezvous.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71FFDD4A27F95772245F48BE /* Pods-Rendezvous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.debug.xcconfig"; sourceTree = "<group>"; };
 		73124CBD1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterBirthdayViewController.swift; sourceTree = "<group>"; };
+		738F48D41CD2AEFD00CDE24B /* Siberian Husky.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Siberian Husky.jpg"; sourceTree = "<group>"; };
 		73B0AC0D1CCA9AE4001D2D73 /* AddContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactsViewController.swift; sourceTree = "<group>"; };
 		73B0AC131CCAAEAA001D2D73 /* EnterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
 		73B0AC151CCAAEB9001D2D73 /* SetProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		73E045D61CCC76AC00866B63 /* ProfilePicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
 		73E045D81CCC78DA00866B63 /* Name.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
 		73E045DA1CCC7C5700866B63 /* AddContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactCell.swift; sourceTree = "<group>"; };
+		73F7DDFB1CD517D500F03857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogIn.storyboard; sourceTree = "<group>"; };
+		73F7DDFE1CD51A8B00F03857 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		F8FAFE40AC040E0CBA96CA55 /* Pods-Rendezvous.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rendezvous.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rendezvous/Pods-Rendezvous.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +118,7 @@
 				73D9C1DC1CC3213000659718 /* ViewController.swift */,
 				73E045D31CCC764100866B63 /* Base Classes */,
 				73D9C1FE1CC3F72900659718 /* Main */,
+				73F7DDFD1CD517E000F03857 /* Log In */,
 				73C93F7E1CC5F39700F62717 /* Sign Up */,
 				73D9C1E41CC3213000659718 /* Assets.xcassets */,
 				73D9C1E61CC3213000659718 /* LaunchScreen.storyboard */,
@@ -125,6 +132,7 @@
 		73D9C1EF1CC35D3400659718 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				738F48D41CD2AEFD00CDE24B /* Siberian Husky.jpg */,
 				73C93F7C1CC5D11500F62717 /* Invalid Button.png */,
 				73C93F781CC58EA100F62717 /* Launch Buttons.png */,
 				73D9C1F01CC35D4600659718 /* Rendezvous Logo.png */,
@@ -149,6 +157,15 @@
 				73E045DA1CCC7C5700866B63 /* AddContactCell.swift */,
 			);
 			name = "Base Classes";
+			sourceTree = "<group>";
+		};
+		73F7DDFD1CD517E000F03857 /* Log In */ = {
+			isa = PBXGroup;
+			children = (
+				73F7DDFA1CD517D500F03857 /* LogIn.storyboard */,
+				73F7DDFE1CD51A8B00F03857 /* LogInViewController.swift */,
+			);
+			name = "Log In";
 			sourceTree = "<group>";
 		};
 		E224B6D8F599B5F498F58733 /* Pods */ = {
@@ -232,10 +249,12 @@
 			files = (
 				73D9C1F11CC35D4600659718 /* Rendezvous Logo.png in Resources */,
 				73D9C1E81CC3213000659718 /* LaunchScreen.storyboard in Resources */,
+				738F48D51CD2AEFD00CDE24B /* Siberian Husky.jpg in Resources */,
 				73D9C1FD1CC3F39E00659718 /* SignUp.storyboard in Resources */,
 				73C93F791CC58EA100F62717 /* Launch Buttons.png in Resources */,
 				73D9C1E51CC3213000659718 /* Assets.xcassets in Resources */,
 				73C93F7D1CC5D11500F62717 /* Invalid Button.png in Resources */,
+				73F7DDFC1CD517D500F03857 /* LogIn.storyboard in Resources */,
 				73D9C1E01CC3213000659718 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +322,7 @@
 				73E045D71CCC76AC00866B63 /* ProfilePicture.swift in Sources */,
 				73D9C1E31CC3213000659718 /* Rendezvous.xcdatamodeld in Sources */,
 				73C93F801CC5F88200F62717 /* SetPasswordViewController.swift in Sources */,
+				73F7DDFF1CD51A8B00F03857 /* LogInViewController.swift in Sources */,
 				73D9C1DD1CC3213000659718 /* ViewController.swift in Sources */,
 				73124CBE1CC6DCFE0007BF6D /* EnterBirthdayViewController.swift in Sources */,
 				73B0AC181CCAC8B6001D2D73 /* CropPhotoViewController.swift in Sources */,
@@ -337,6 +357,14 @@
 				73D9C1FC1CC3F39E00659718 /* Base */,
 			);
 			name = SignUp.storyboard;
+			sourceTree = "<group>";
+		};
+		73F7DDFA1CD517D500F03857 /* LogIn.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				73F7DDFB1CD517D500F03857 /* Base */,
+			);
+			name = LogIn.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

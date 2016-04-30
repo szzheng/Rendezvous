@@ -32,7 +32,7 @@ class SetPasswordViewController: UIViewController {
         
         // reserve email
         /*
-        let ref = Firebase(url:"https://resplendent-torch-7790.firebaseio.com/user-emails")
+        let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/user-emails")
         let newChildRef = ref.childByAutoId()
         newChildRef.setValue(["email": email])*/
 

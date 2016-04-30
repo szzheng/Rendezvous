@@ -25,8 +25,8 @@ class ProfilePicture: UIImageView {
     override func layoutSubviews() {
         // Make profile picture circular
         layer.cornerRadius = layer.frame.size.width/2
-        layer.borderColor = UIColor.darkGrayColor().CGColor
-        layer.borderWidth = 0.25
+        //layer.borderColor = UIColor.darkGrayColor().CGColor
+        //layer.borderWidth = 0.25
         clipsToBounds = true
         
         // Create label incase there is no picture

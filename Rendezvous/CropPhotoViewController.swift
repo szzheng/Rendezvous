@@ -14,7 +14,7 @@ import UIKit
 * Used to pass information back to SetProfileViewController
 */
 protocol CropPhotoViewControllerDelegate {
-    func sendPhoto(var image: UIImage)  // send the cropped image back to SetProfileViewContrller
+    func sendPhoto(image: UIImage)  // send the cropped image back to SetProfileViewContrller
     func cancelPhoto()
     func enableContinue()
 }
@@ -172,7 +172,7 @@ class CropPhotoViewController: UIViewController, UIScrollViewDelegate, UIGesture
         
         cancelButtonLeadingConstraint.active = true
         cancelButtonBottomConstraint.active = true
-        cancel.addTarget(self, action: "cancel:", forControlEvents: UIControlEvents.TouchUpInside)
+        cancel.addTarget(self, action: #selector(CropPhotoViewController.cancel(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         
         // Done Button
@@ -190,7 +190,7 @@ class CropPhotoViewController: UIViewController, UIScrollViewDelegate, UIGesture
         
         doneButtonTrailingConstraint.active = true
         doneButtonBottomConstraint.active = true
-        done.addTarget(self, action: "done:", forControlEvents: UIControlEvents.TouchUpInside)
+        done.addTarget(self, action: #selector(CropPhotoViewController.done(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         
         

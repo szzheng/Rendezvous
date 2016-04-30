@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="muX-CU-yNp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="muX-CU-yNp">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -418,8 +418,8 @@
                                     <constraint firstAttribute="width" constant="150" id="tPE-kt-KDL"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi2-HV-RCC">
-                                <rect key="frame" x="96" y="376" width="184" height="60"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wi2-HV-RCC">
+                                <rect key="frame" x="130.5" y="390" width="115" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="115" id="ELi-5q-jwq"/>
                                     <constraint firstAttribute="height" constant="33" id="NEH-OJ-DXN"/>
@@ -563,21 +563,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ql1-ha-l2o" customClass="ProfilePicture" customModule="Rendezvous" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="2" width="75" height="75"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="8Ks-Om-RwZ"/>
-                                                        <constraint firstAttribute="height" constant="75" id="u4y-3O-xGn"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steven Zheng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0me-uI-1w7">
-                                                    <rect key="frame" x="98" y="29" width="191" height="20.5"/>
+                                                    <rect key="frame" x="87" y="29" width="234" height="20.5"/>
                                                     <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM6-QZ-858">
-                                                    <rect key="frame" x="291" y="24" width="84" height="30"/>
+                                                    <rect key="frame" x="329" y="25" width="40" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="RWB-qW-wHc"/>
                                                     </constraints>
@@ -589,13 +582,20 @@
                                                         <action selector="addContact:" destination="5o7-qS-la7" eventType="touchUpInside" id="qPf-Hz-osV"/>
                                                     </connections>
                                                 </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ql1-ha-l2o" customClass="ProfilePicture" customModule="Rendezvous" customModuleProvider="target">
+                                                    <rect key="frame" x="14" y="8" width="65" height="65"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="65" id="8Ks-Om-RwZ"/>
+                                                        <constraint firstAttribute="height" constant="65" id="u4y-3O-xGn"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ql1-ha-l2o" firstAttribute="centerY" secondItem="zMk-cZ-PXC" secondAttribute="centerY" id="Joz-85-aeM"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="0me-uI-1w7" secondAttribute="trailing" constant="86" id="Ynh-OG-w5y"/>
-                                                <constraint firstItem="IM6-QZ-858" firstAttribute="leading" secondItem="0me-uI-1w7" secondAttribute="trailing" constant="2" id="aNv-NO-uGW"/>
-                                                <constraint firstItem="ql1-ha-l2o" firstAttribute="leading" secondItem="zMk-cZ-PXC" secondAttribute="leadingMargin" constant="7" id="b9O-dg-Iem"/>
-                                                <constraint firstItem="IM6-QZ-858" firstAttribute="trailing" secondItem="zMk-cZ-PXC" secondAttribute="trailingMargin" id="eNc-NT-M91"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0me-uI-1w7" secondAttribute="trailing" constant="54" id="Ynh-OG-w5y"/>
+                                                <constraint firstItem="IM6-QZ-858" firstAttribute="leading" secondItem="0me-uI-1w7" secondAttribute="trailing" constant="8" id="aNv-NO-uGW"/>
+                                                <constraint firstItem="ql1-ha-l2o" firstAttribute="leading" secondItem="zMk-cZ-PXC" secondAttribute="leadingMargin" constant="6" id="b9O-dg-Iem"/>
+                                                <constraint firstItem="IM6-QZ-858" firstAttribute="trailing" secondItem="zMk-cZ-PXC" secondAttribute="trailingMargin" constant="-6" id="eNc-NT-M91"/>
                                                 <constraint firstItem="IM6-QZ-858" firstAttribute="centerY" secondItem="zMk-cZ-PXC" secondAttribute="centerY" id="h6d-LK-es3"/>
                                                 <constraint firstItem="0me-uI-1w7" firstAttribute="leading" secondItem="ql1-ha-l2o" secondAttribute="trailing" constant="8" id="nIM-y7-O7e"/>
                                                 <constraint firstItem="0me-uI-1w7" firstAttribute="centerY" secondItem="zMk-cZ-PXC" secondAttribute="centerY" id="s3E-wc-zS5"/>
@@ -603,15 +603,29 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="addButton" destination="IM6-QZ-858" id="Sut-9o-NHY"/>
+                                            <outlet property="name" destination="0me-uI-1w7" id="Qwz-I6-b2l"/>
+                                            <outlet property="profilePicture" destination="ql1-ha-l2o" id="EBe-55-lAt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJ3-aU-Wwe">
+                                <rect key="frame" x="0.0" y="312" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hB3-Re-Cb3"/>
+                                </constraints>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="done:" destination="udm-og-Ofn" eventType="touchUpInside" id="KTz-kx-rAk"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JuS-BB-5fE" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leading" id="41a-eS-Un8"/>
+                            <constraint firstAttribute="trailing" secondItem="sJ3-aU-Wwe" secondAttribute="trailing" id="7we-lM-pu9"/>
                             <constraint firstItem="iVN-I5-uaP" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leading" id="A2z-3s-Coo"/>
+                            <constraint firstItem="sJ3-aU-Wwe" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leading" id="KHd-UB-Eed"/>
                             <constraint firstItem="6hJ-bE-u2Y" firstAttribute="top" secondItem="cff-IJ-qGV" secondAttribute="bottom" id="Nwa-Ww-4Wb"/>
                             <constraint firstAttribute="trailing" secondItem="iVN-I5-uaP" secondAttribute="trailing" id="QMy-0O-jIM"/>
                             <constraint firstItem="vQF-Ub-wov" firstAttribute="centerX" secondItem="5VE-Zp-eJg" secondAttribute="centerX" id="Y3R-Fd-sLK"/>
@@ -622,10 +636,13 @@
                             <constraint firstItem="cff-IJ-qGV" firstAttribute="leading" secondItem="5VE-Zp-eJg" secondAttribute="leadingMargin" constant="-20" id="hhb-7d-rz0"/>
                             <constraint firstItem="JuS-BB-5fE" firstAttribute="top" secondItem="BVX-0R-3Eg" secondAttribute="bottom" id="mwD-yO-Lnc"/>
                             <constraint firstItem="cff-IJ-qGV" firstAttribute="top" secondItem="iVN-I5-uaP" secondAttribute="bottom" id="nf1-ML-Ipb"/>
+                            <constraint firstItem="6hJ-bE-u2Y" firstAttribute="top" secondItem="sJ3-aU-Wwe" secondAttribute="bottom" constant="311" id="rYx-dN-FKm"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="doneButton" destination="sJ3-aU-Wwe" id="v5n-ya-k8d"/>
+                        <outlet property="doneButtonBottomConstraint" destination="rYx-dN-FKm" id="zcO-qG-yNj"/>
                         <outlet property="searchResults" destination="cff-IJ-qGV" id="B2w-Jr-pv8"/>
                     </connections>
                 </viewController>
