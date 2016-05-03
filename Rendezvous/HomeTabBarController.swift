@@ -1,19 +1,20 @@
 //
-//  HomeViewController.swift
+//  HomeTabBarController.swift
 //  Rendezvous
 //
-//  Created by Steven Zheng on 4/17/16.
+//  Created by Steven Zheng on 5/2/16.
 //  Copyright © 2016 szzheng. All rights reserved.
 //
 
 import UIKit
+import Firebase
 
-class HomeViewController: UIViewController {
+class HomeTabBarController: UITabBarController {
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -22,15 +23,7 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func logIn(sender: AnyObject) {
-    }
 
-    
-   
-    @IBAction func signUp(sender: AnyObject) {
-        performSegueWithIdentifier("SignUpSegue", sender: self)
-    }
-    
     /*
     // MARK: - Navigation
 

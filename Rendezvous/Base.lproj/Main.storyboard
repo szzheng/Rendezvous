@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Launch View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Rendezvous" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LaunchViewController" customModule="Rendezvous" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -94,6 +94,7 @@
                     <connections>
                         <segue destination="xh9-1X-Ky8" kind="show" identifier="SignUpSegue" id="jcg-GJ-elg"/>
                         <segue destination="eJE-4M-L97" kind="show" identifier="LogInSegue" id="WNn-7B-TMa"/>
+                        <segue destination="bts-io-qNJ" kind="show" identifier="HomeSegue" id="blG-E8-x0w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -133,7 +134,15 @@
                 <viewControllerPlaceholder storyboardName="LogIn" id="eJE-4M-L97" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVz-j3-lbK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1724.5" y="789.5"/>
+            <point key="canvasLocation" x="1691" y="602"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="2Ds-b9-3F2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="bts-io-qNJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U7O-vv-1lA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1692" y="429"/>
         </scene>
     </scenes>
     <resources>

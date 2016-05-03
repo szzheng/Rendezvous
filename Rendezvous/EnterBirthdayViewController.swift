@@ -154,6 +154,7 @@ class EnterBirthdayViewController: UIViewController {
                     let newUser = ["email": self.email]
                     let adjustedEmail = self.escapeEmailAddress(self.email)
                     self.ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).setValue(newUser)
+                    //self.ref.childByAppendingPath("contacts").childByAppendingPath(adjustedEmail).setValue(newUser)
                     
                     
                     self.ref.authUser(self.email, password: self.password) {

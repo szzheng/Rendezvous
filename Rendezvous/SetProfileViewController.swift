@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class SetProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, CropPhotoViewControllerDelegate {
 
     // FIREBASE URL
@@ -116,6 +117,7 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
     @IBAction func setPhoto(sender: AnyObject) {
         
         let authData = ref.authData
+
         let data = UIImagePNGRepresentation(image)!
         let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         
@@ -138,8 +140,16 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
     
     
     @IBAction func skipSetPhoto(sender: AnyObject) {
+        let authData = ref.authData
+        let user = ["profile picture": ""]
+        let email = authData.providerData["email"] as! String
+        let adjustedEmail = escapeEmailAddress(email)
+        ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).updateChildValues(user)
         performSegueWithIdentifier("AddContactsSegue", sender: self)
     }
+    
+    
+
     
     // MARK: - Navigation
     
@@ -165,6 +175,7 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
         }*/
         
     }
+    
 
 
 }

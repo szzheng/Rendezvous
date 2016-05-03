@@ -36,5 +36,28 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>amazonaws.com.cn</key>
+		<dict>
+			<key>NSIncludesSubdomains</key>
+			<false/>
+			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+			<false/>
+			<key>NSThirdPartyExceptionMinimumTLSVersion</key>
+			<string>TLSv1.0</string>
+		</dict>
+		<key>amazonaws.com</key>
+		<dict>
+			<key>NSIncludesSubdomains</key>
+			<true/>
+			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+			<false/>
+			<key>NSThirdPartyExceptionMinimumTLSVersion</key>
+			<string>TLSv1.0</string>
+		</dict>
+		<key>NSExceptionDomains</key>
+		<dict/>
+	</dict>
 </dict>
 </plist>

@@ -15,10 +15,12 @@ class AddContactCell: UITableViewCell {
     
     @IBOutlet var name: UILabel!
     @IBOutlet var profilePicture: ProfilePicture!
+    var profilePictureString: String!
     var email: String!
     
     let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
     let usersRef = Firebase(url:"https://rendezvous-app.firebaseio.com/users")
+    let contactsRef = Firebase(url:"https://rendezvous-app.firebaseio.com/contacts")
     
     
     override func awakeFromNib() {
@@ -41,14 +43,14 @@ class AddContactCell: UITableViewCell {
     }
 
     @IBAction func addContact(sender: AnyObject) {
-        //print("Adding Contact")
+        print("Adding Contact")
         
         let adjustedEmail = escapeEmailAddress(email)
         
         let authData = ref.authData
         
         // get contact email
-        let addedContact = ["emailID": adjustedEmail]
+        let addedContact = ["email": email, "name": name.text!, "profile picture": profilePictureString]
         
         // Create a child path with a key set to the uid underneath the "users" node
         // This creates a URL path like the following:
@@ -57,10 +59,13 @@ class AddContactCell: UITableViewCell {
         // get your email
         let yourEmail = authData.providerData["email"] as! String
         let adjustedYourEmail = escapeEmailAddress(yourEmail)
-        let yourRef = Firebase(url:"https://rendezvous-app.firebaseio.com/users/" + adjustedYourEmail + "/contacts/")
+        let yourRef = Firebase(url:"https://rendezvous-app.firebaseio.com/contacts/")
         
-        let addedContactRef = yourRef.childByAutoId()
-        addedContactRef.setValue(addedContact)
+        yourRef.childByAppendingPath(adjustedYourEmail).childByAppendingPath(adjustedEmail).updateChildValues(addedContact)
+        
+        
+        //let addedContactRef = yourRef.childByAutoId()
+        //addedContactRef.setValue(addedContact)
         
         
         //yourRef.childByAppendingPath("contacts").updateChildValues(addedContact)

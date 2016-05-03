@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class LogInViewController: UIViewController {
 
     @IBOutlet var email: UITextField!
     @IBOutlet var password: UITextField!
+    
+    var activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
+    
+    // Get a reference to database
+    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
     
     
     override func viewDidLoad() {
@@ -26,27 +32,41 @@ class LogInViewController: UIViewController {
     }
     
 
-    /* Log the user in and go to main page */
+    /* Log the user in and go to home page */
     @IBAction func logIn(sender: AnyObject) {
         
         let email = self.email.text!
         let password = self.password.text!
         
-        
-        
+        logInFirebase(email, password: password)
     }
     
     
     /* Firebase log in */
     func logInFirebase(email: String, password: String) -> Void {
         
+        displayActivityIndicator(activityIndicator)
+        
+        self.ref.authUser(email, password: password) {
+            error, authData in
+            
+            self.activityIndicator.stopAnimating()
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+            if error != nil {
+                // an error occured while attempting login
+                print("Error login")
+            } else {
+                // user is logged in, check authData for data
+                self.navigationController?.popViewControllerAnimated(false)
+            }
+        }
     }
     
     
     /* Go back to launch screen */
     @IBAction func back(sender: AnyObject) {
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewControllerAnimated(false)
     }
     /*
     // MARK: - Navigation

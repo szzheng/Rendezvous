@@ -17,12 +17,14 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     var filteredPhoto = UIImage()
     var filteredArray = [String]()
     var filteredEmail = ""
+    var filteredPhotoString = ""
     
     var activityIndicator = UIActivityIndicatorView()
     
     var shouldShowSearchResults = false
     
     let usersRef = Firebase(url:"https://rendezvous-app.firebaseio.com/users")
+    let contactsRef = Firebase(url:"https://rendezvous-app.firebaseio.com/contacts")
     
     var usersQuery: FQuery!
     
@@ -176,14 +178,14 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
             
             //self.activityIndicator.stopAnimating()
             //self.activityIndicator.hidden = true
-            print("QUERY")
-            if let email = snapshot.value["email"] as? String {
+            print(snapshot.key)
+            if let email = snapshot.value["email"] as String! {
                 
                 if (email == searchString) {
                     print("equal")
                     //print(self.shouldShowSearchResults)
                     
-                    let name = snapshot.value["name"] as! String
+                    let name = snapshot.value["name"] as String!
                     /*
                     if let profilePicture = snapshot.value["Profile Picture"] as? String {
                         let decodedData = NSData(base64EncodedString: profilePicture, options: NSDataBase64DecodingOptions(rawValue: 0))
@@ -193,14 +195,20 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
                         self.filteredPhoto = UIImage(named: "Siberian Husky.jpg")!
                     }
  */
-                    let email = snapshot.value["email"] as! String
+                    let email = snapshot.value["email"] as String!
                     self.filteredEmail = email
-                    if let base64String = snapshot.value["Profile Picture"] as? String {
-                        let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                        let image = UIImage(data: decodedData!)
-                        self.filteredPhoto = image!
+                    if let base64String = snapshot.value["Profile Picture"] as String! {
+                        if (base64String == "") {
+                            self.filteredPhotoString = ""
+                            self.filteredPhoto = UIImage(named: "Siberian Husky.jpg")!
+                        } else {
+                            let decodedData = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+                            let image = UIImage(data: decodedData!)
+                            self.filteredPhoto = image!
+                            self.filteredPhotoString = base64String
+                        }
                     } else {
-
+                        self.filteredPhotoString = ""
                         self.filteredPhoto = UIImage(named: "Siberian Husky.jpg")!
                     }
                     
@@ -251,7 +259,7 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
             cell.name.text = filteredArray[indexPath.row]
             cell.profilePicture.image = filteredPhoto
             cell.email = filteredEmail
-            
+            cell.profilePictureString = filteredPhotoString
         } else {
             cell.textLabel?.text = dataArray[indexPath.row]
         }
@@ -263,7 +271,8 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     
 
     @IBAction func done(sender: AnyObject) {
-        performSegueWithIdentifier("ToHomeScreenSegue", sender: self)
+        searchController.active = false
+        self.navigationController?.popToRootViewControllerAnimated(false)
     }
     
     
