@@ -85,9 +85,9 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("HI")
             }*/
             
-            let contact = Contact(name: snapshot.value["name"] as String!,
-            profilePicture: snapshot.value["profile picture"] as String!,
-            email: snapshot.value["email"] as String!)
+            let contact = Contact(name: snapshot.value["name"] as! String!,
+            profilePicture: snapshot.value["profile picture"] as! String!,
+            email: snapshot.value["email"] as! String!)
              
             self.contacts += [contact]
             self.contactsTable.reloadData()
