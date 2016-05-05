@@ -22,7 +22,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     var contacts = [Contact]()
     var myContactsRef: Firebase!
     
-    var selectedContactEmail = "DEFAULT"
+    var selectedContactEmail:String!
     var selectedContactName = "Default Name"
     
     var activityIndicator = UIActivityIndicatorView()
@@ -219,8 +219,9 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         
         let contactVC = segue.destinationViewController as! ContactViewController
         
-        print(selectedContactEmail)
+        //print("HI" + selectedContactEmail)
         contactVC.email = selectedContactEmail
+        //contactVC.email = ""
         contactVC.name = selectedContactName
     }
  

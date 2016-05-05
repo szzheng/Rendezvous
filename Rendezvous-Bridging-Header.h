@@ -10,5 +10,6 @@
 #define Rendezvous_Bridging_Header_h
 
 #import <JTCalendar/JTCalendar.h>
+#import <MaterialControls/MDTimePickerDialog.h>
 
 #endif /* Rendezvous_Bridging_Header_h */

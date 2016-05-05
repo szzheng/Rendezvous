@@ -153,17 +153,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Pk-Df-8DN">
-                                <rect key="frame" x="169" y="404" width="36" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="tNG-6b-zAk"/>
-                                    <constraint firstAttribute="height" constant="30" id="yv8-1x-Nls"/>
-                                </constraints>
-                                <state key="normal" title="Send"/>
-                                <connections>
-                                    <action selector="send:" destination="mtm-3x-SjM" eventType="touchUpInside" id="ZTH-YW-OfH"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -173,8 +162,6 @@
                             <constraint firstItem="qiV-Ns-KM3" firstAttribute="centerY" secondItem="LZv-p3-hNJ" secondAttribute="centerY" id="Lcs-1s-H6V"/>
                             <constraint firstItem="qiV-Ns-KM3" firstAttribute="centerX" secondItem="LZv-p3-hNJ" secondAttribute="centerX" id="Vj8-TP-4Y7"/>
                             <constraint firstItem="qiV-Ns-KM3" firstAttribute="leading" secondItem="fiL-of-NBP" secondAttribute="leading" id="Yvw-A0-w0u"/>
-                            <constraint firstItem="4Pk-Df-8DN" firstAttribute="leading" secondItem="fiL-of-NBP" secondAttribute="leadingMargin" constant="149" id="ZCP-zP-1d1"/>
-                            <constraint firstItem="4Pk-Df-8DN" firstAttribute="top" secondItem="7OM-PL-sjn" secondAttribute="bottom" constant="55" id="dpZ-gq-eho"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7OM-PL-sjn" secondAttribute="trailing" constant="17" id="hFL-kD-ZcS"/>
                             <constraint firstItem="qiV-Ns-KM3" firstAttribute="top" secondItem="mh9-Tc-Rei" secondAttribute="bottom" id="nh4-8i-LD6"/>
                             <constraint firstItem="LZv-p3-hNJ" firstAttribute="leading" secondItem="fiL-of-NBP" secondAttribute="leadingMargin" constant="59" id="w1S-Qa-aaW"/>

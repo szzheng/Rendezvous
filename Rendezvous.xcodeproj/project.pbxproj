@@ -12,6 +12,7 @@
 		7394629A1CD7F38C0047A4AF /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 739462991CD7F38C0047A4AF /* HomeTabBarController.swift */; };
 		7394629C1CD7F8BB0047A4AF /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7394629B1CD7F8BB0047A4AF /* MeViewController.swift */; };
 		7394629E1CD837860047A4AF /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7394629D1CD837850047A4AF /* ContactViewController.swift */; };
+		739462A01CD936A10047A4AF /* TimeDurationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7394629F1CD936A10047A4AF /* TimeDurationButton.swift */; };
 		73B0AC0E1CCA9AE4001D2D73 /* AddContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC0D1CCA9AE4001D2D73 /* AddContactsViewController.swift */; };
 		73B0AC141CCAAEAA001D2D73 /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC131CCAAEAA001D2D73 /* EnterNameViewController.swift */; };
 		73B0AC161CCAAEB9001D2D73 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B0AC151CCAAEB9001D2D73 /* SetProfileViewController.swift */; };
@@ -50,6 +51,7 @@
 		739462991CD7F38C0047A4AF /* HomeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		7394629B1CD7F8BB0047A4AF /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		7394629D1CD837850047A4AF /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		7394629F1CD936A10047A4AF /* TimeDurationButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDurationButton.swift; sourceTree = "<group>"; };
 		73B0AC0D1CCA9AE4001D2D73 /* AddContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactsViewController.swift; sourceTree = "<group>"; };
 		73B0AC131CCAAEAA001D2D73 /* EnterNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
 		73B0AC151CCAAEB9001D2D73 /* SetProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				73E045DA1CCC7C5700866B63 /* AddContactCell.swift */,
 				73F7DE091CD56FA700F03857 /* ContactCell.swift */,
 				73F7DE0B1CD571C800F03857 /* Contact.swift */,
+				7394629F1CD936A10047A4AF /* TimeDurationButton.swift */,
 			);
 			name = "Base Classes";
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				73B0AC141CCAAEAA001D2D73 /* EnterNameViewController.swift in Sources */,
 				73B0AC161CCAAEB9001D2D73 /* SetProfileViewController.swift in Sources */,
 				73C93F7B1CC5935600F62717 /* SetEmailViewController.swift in Sources */,
+				739462A01CD936A10047A4AF /* TimeDurationButton.swift in Sources */,
 				73F7DE081CD539A300F03857 /* ContactsViewController.swift in Sources */,
 				73F7DE011CD51FA300F03857 /* ViewControllerExtension.swift in Sources */,
 				73B0AC0E1CCA9AE4001D2D73 /* AddContactsViewController.swift in Sources */,
