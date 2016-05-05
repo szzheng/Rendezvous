@@ -12,6 +12,8 @@ import JTCalendar
 import MaterialControls
 
 class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTimePickerDialogDelegate {
+
+    var notificationCenterCurrentlyDisplayed: Bool!
     
     // Get a reference to requests
     let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
@@ -26,6 +28,7 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
     
     var timePicker: UIDatePicker!
     var alternateTimePicker: MDTimePickerDialog!
+    var alternateTimePickerFrame: CGRect!
     
     var dateAndTimeLabel: UILabel!
     
@@ -116,11 +119,11 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         
         /* Alternate time picker setup */
         
-        let alternateTimePickerFrame = CGRectMake(0, yOffset, viewWidth, navigationBarHeight * 8)
+        alternateTimePickerFrame = CGRectMake(0, yOffset, viewWidth, navigationBarHeight * 8)
         yOffset += navigationBarHeight * 8
         availableSpace -= navigationBarHeight * 8
         //alternateTimePicker = MDTimePickerDialog(frame: alternateTimePickerFrame)
-        alternateTimePicker = MDTimePickerDialog(hour: 12, andWithMinute: 0)
+        alternateTimePicker = MDTimePickerDialog(hour: 12, andWithMinute: 0, andWithFrame: alternateTimePickerFrame)
         alternateTimePicker.frame = alternateTimePickerFrame
         alternateTimePicker.updateFrame(CGRectMake(0, 0, alternateTimePickerFrame.width, alternateTimePickerFrame.height))
         alternateTimePicker.delegate = self
@@ -221,12 +224,32 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         
         
         
+        /* Notification center handling */
+        notificationCenterCurrentlyDisplayed = false
+        let defaultCenter = NSNotificationCenter.defaultCenter()
+        defaultCenter.addObserver(self, selector: #selector(ContactViewController.onNotificationCenterDismissed), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        defaultCenter.addObserver(self, selector: #selector(ContactViewController.onNotificationCenterDisplayed), name: UIApplicationWillResignActiveNotification, object: nil)
         
         
         
         
         // Do any additional setup after loading the view.
     }
+    
+    func onNotificationCenterDismissed() {
+        if ((notificationCenterCurrentlyDisplayed) != nil)
+        {
+            notificationCenterCurrentlyDisplayed = false;
+            //print(alternateTimePicker.frame)
+            alternateTimePicker.frame = alternateTimePickerFrame
+        }
+    }
+    
+    func onNotificationCenterDisplayed() {
+        notificationCenterCurrentlyDisplayed = true;
+    }
+    
+    
     
     /*
     func pressed(sender: UIButton!) {
