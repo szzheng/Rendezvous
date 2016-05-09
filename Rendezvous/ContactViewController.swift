@@ -10,10 +10,17 @@ import UIKit
 import Firebase
 import JTCalendar
 import MaterialControls
+import QuartzCore
 
 class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTimePickerDialogDelegate {
 
+    
+    let orangeColor = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+    
     var notificationCenterCurrentlyDisplayed: Bool!
+    var todayView: JTCalendarDayView!
+    var pastViews = [JTCalendarDayView]()
+    var selectedView: JTCalendarDayView!
     
     // Get a reference to requests
     let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
@@ -32,18 +39,30 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
     
     var dateAndTimeLabel: UILabel!
     
+    var JTDayView: JTCalendarDayView!
+    
     @IBOutlet var contactName: UILabel!
     @IBOutlet var message: UITextField!
     
     var highlight = UIView()
+    var dateNumberLabel = UILabel()
+    var todayHighlight = UIView()
+    var todayDateNumberLabel = UILabel()
+    var todayLoaded = 0
+    
+    var pastDayLoaded = 0
     
     var name: String!
     var email: String!
     
     var selectionOffset = 0
+    var todayOffset = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        todayLoaded = 0
+        pastDayLoaded = 0
         
         let navigationBarHeight = navigationBar.frame.height
         let navigationBarY = navigationBar.frame.origin.y
@@ -67,11 +86,12 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         calendarManager.delegate = self
         
         
-        let menuFrame = CGRect(x: 0, y: yOffset, width: viewWidth, height: navigationBarHeight)
+        let monthFrame = CGRect(x: 0, y: yOffset, width: viewWidth, height: navigationBarHeight * 0.9)
+        let monthLabel = UILabel(frame: monthFrame)
         yOffset += navigationBarHeight
         availableSpace -= navigationBarHeight
         
-        calendarMenuView = JTCalendarMenuView(frame: menuFrame)
+        calendarMenuView = JTCalendarMenuView(frame: monthFrame)
  
         
         let contentFrame = CGRect(x: 0, y: yOffset, width: viewWidth, height: navigationBarHeight * 1.5)
@@ -87,13 +107,13 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         calendarManager.reload()
         
         self.view.addSubview(calendarContentView!)
-        self.view.addSubview(calendarMenuView!)
+        //self.view.addSubview(calendarMenuView!)
         
         
         /* End Calendar Setup */
         
         /* Show date and time */
-        /*
+        
         let dateAndTimeFrame = CGRectMake(0, yOffset, viewWidth, navigationBarHeight * 0.75)
         yOffset += navigationBarHeight * 0.75
         availableSpace -= navigationBarHeight * 0.75
@@ -102,7 +122,7 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         dateAndTimeLabel.textAlignment = NSTextAlignment.Center
         //dateAndTimeLabel.font = UIFont(name: "System", size: 17.0)
         self.view.addSubview(dateAndTimeLabel)
-        */
+        
         /* End show date and time */
         
         /* Time picker setup */
@@ -122,8 +142,11 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         alternateTimePickerFrame = CGRectMake(0, yOffset, viewWidth, navigationBarHeight * 8)
         yOffset += navigationBarHeight * 8
         availableSpace -= navigationBarHeight * 8
+        
+        let headerOffset = NSInteger(yOffset * -1)
+        
         //alternateTimePicker = MDTimePickerDialog(frame: alternateTimePickerFrame)
-        alternateTimePicker = MDTimePickerDialog(hour: 12, andWithMinute: 0, andWithFrame: alternateTimePickerFrame)
+        alternateTimePicker = MDTimePickerDialog(hour: 12, andWithMinute: 0, andWithFrame: alternateTimePickerFrame, andWithOffset: headerOffset)
         alternateTimePicker.frame = alternateTimePickerFrame
         alternateTimePicker.updateFrame(CGRectMake(0, 0, alternateTimePickerFrame.width, alternateTimePickerFrame.height))
         alternateTimePicker.delegate = self
@@ -231,6 +254,8 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         defaultCenter.addObserver(self, selector: #selector(ContactViewController.onNotificationCenterDisplayed), name: UIApplicationWillResignActiveNotification, object: nil)
         
         
+        createWeekDayHeader()
+        
         
         
         // Do any additional setup after loading the view.
@@ -249,7 +274,23 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         notificationCenterCurrentlyDisplayed = true;
     }
     
-    
+    func createWeekDayHeader() {
+        
+        let labelWidth = self.view.frame.width / 7
+        let weekDays = ["S", "M", "T", "W", "T", "F", "S"]
+        
+        var i = 0 
+        while (i < 7) {
+            let weekDayFrame = CGRectMake(labelWidth * CGFloat(i), calendarContentView!.frame.origin.y + 7, labelWidth, navigationBar.frame.height / 1.5)
+            let weekDayLabel = UILabel(frame: weekDayFrame)
+            weekDayLabel.text = weekDays[i]
+            weekDayLabel.textAlignment = NSTextAlignment.Center
+            weekDayLabel.textColor = UIColor.darkGrayColor()
+            weekDayLabel.font = weekDayLabel.font.fontWithSize(10)
+            self.view.addSubview(weekDayLabel)
+            i += 1
+        }
+    }
     
     /*
     func pressed(sender: UIButton!) {
@@ -275,20 +316,28 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
         print(minute)
     }
     
-    /*
+    
     func updateDateAndTime(date: NSDate) -> Void {
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEEE, MMMM d"
         let description = formatter.stringFromDate(date)
         dateAndTimeLabel.text = description
-    }*/
+    }
     
     
     func calendar(calendar: JTCalendarManager!, prepareDayView dayView: UIView!) {
         
-        let JTDayView = dayView as! JTCalendarDayView
-        JTDayView.hidden = false
+        /*
+        if (JTDayView != nil) {
+            JTDayView.textLabel.textColor = UIColor.blackColor()
+        }*/
+        
+        JTDayView = dayView as! JTCalendarDayView
+        
+
+        
+        //JTDayView.textLabel.textColor = UIColor.whiteColor()
         
         // Test if the dayView is from another month than the page
         // Use only in month mode for indicate the day of the previous or next month
@@ -297,7 +346,7 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
             dayView.hidden = YES;
         }
             // Today
-        else if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
+        if([_calendarManager.dateHelper date:[NSDate date] isTheSameDayThan:dayView.date]){
             dayView.circleView.hidden = NO;
             dayView.circleView.backgroundColor = [UIColor blueColor];
             dayView.dotView.backgroundColor = [UIColor whiteColor];
@@ -325,6 +374,94 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
             //dayView.dotView.hidden = true
             dayView.
         }*/
+        /*
+        if (calendar.dateHelper.date(NSDate(), isTheSameDayThan: JTDayView.date) && (todayLoaded == 1)) {
+            //print ("HI")
+            
+        }*/
+        
+        
+        // Make current day orange
+        if ((JTDayView.date.mdMonth == NSDate().mdMonth) && (JTDayView.date.mdYear ==
+            NSDate().mdYear) && (JTDayView.date.mdDay == NSDate().mdDay)) {
+            
+            if (todayLoaded == 1) {
+                print("HI")
+                
+                highlight.removeFromSuperview()
+                dateNumberLabel.removeFromSuperview()
+                
+                todayView = JTDayView
+                print("MAKING ORANGE")
+                //todayView.textLabel.textColor = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1) // Alizarin
+                
+                let color = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1) // Alizarin
+                
+                todayView.circleView.hidden = false
+                //selectedView.circleView.backgroundColor = color
+                todayView.textLabel.textColor = color
+                selectedView = todayView
+                
+                selectedView.circleView.backgroundColor = orangeColor
+                selectedView.textLabel.textColor = UIColor.whiteColor()
+                
+                
+                selectionOffset == 0
+                
+                //print(calendarMenuView?.description)
+                /*
+                print(JTDayView.frame)
+                highlight = UIView(frame: CGRectMake(JTDayView.frame.width/2 - JTDayView.frame.height/2, 0, JTDayView.frame.height, JTDayView.frame.height))
+                //JTDayView.backgroundColor = UIColor.blueColor()
+                highlight.backgroundColor = color
+                highlight.layer.cornerRadius = highlight.frame.width / 2
+                
+                todayView.addSubview(highlight)
+                
+                let dateNumber = todayView.textLabel.text!
+                dateNumberLabel = UILabel(frame: highlight.frame)
+                dateNumberLabel.text = dateNumber
+                dateNumberLabel.textAlignment = NSTextAlignment.Center
+                dateNumberLabel.textColor = UIColor.whiteColor()
+                dateNumberLabel.font = UIFont(name: "System", size: 12)
+                todayView.insertSubview(dateNumberLabel, belowSubview: self.view)
+                todayView.layer.zPosition = CGFloat(MAXFLOAT)*/
+                /*
+                highlight.frame = todayView.circleView.frame
+                print(highlight.frame)
+                highlight.backgroundColor = color
+                highlight.layer.cornerRadius = highlight.frame.width / 2
+                
+                todayView.addSubview(highlight)
+                
+                
+                let dateNumber = todayView.textLabel.text!
+                dateNumberLabel = UILabel(frame: highlight.frame)
+                dateNumberLabel.text = dateNumber
+                dateNumberLabel.textAlignment = NSTextAlignment.Center
+                dateNumberLabel.textColor = UIColor.whiteColor()
+                dateNumberLabel.font = UIFont(name: "System", size: 12)
+                todayView.addSubview(dateNumberLabel)
+ 
+                selectionOffset = 0
+                */
+            }
+            todayLoaded += 1
+        }
+        
+        // Make past days grey
+        if ((JTDayView.date.mdYear < NSDate().mdYear) || (JTDayView.date.mdMonth < NSDate().mdMonth) || (JTDayView.date.mdDay < NSDate().mdDay)) {
+            
+            if (todayLoaded <= 1) {
+                print(pastDayLoaded)
+                
+                let pastDay = JTDayView
+                pastViews += [pastDay]
+                pastDay.textLabel.textColor = UIColor.lightGrayColor()
+            }
+        }
+        
+        
         
         
         
@@ -332,66 +469,272 @@ class ContactViewController: UIViewController, JTCalendarDelegate, MDCalendarTim
     
     func calendarDidLoadNextPage(calendar: JTCalendarManager!) {
         selectionOffset += 1
+        todayOffset += 1
+        
+        /*
+        
+        print("loading next")
         
         if (selectionOffset > -2 && selectionOffset < 2) {
             highlight.hidden = false
+            dateNumberLabel.hidden = false
         } else {
             highlight.hidden = true
+            dateNumberLabel.hidden = true
         }
+        
+        if (todayOffset > -2 && todayOffset < 2) {
+            todayView.textLabel.textColor = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1) // Alizarin
+            
+
+        } else {
+            print("Hey")
+            todayView.textLabel.textColor = UIColor.blackColor()
+            
+        }
+        
+        if (todayOffset < 2) {
+            for pastView in pastViews {
+                pastView.textLabel.textColor = UIColor.lightGrayColor()
+            }
+        } else {
+            for pastView in pastViews {
+                pastView.textLabel.textColor = UIColor.blackColor()
+            }
+        }
+ 
+ */
+        // today is selected
+        if (selectedView == todayView) {
+            
+            // close to the selected day
+            if (selectionOffset > -2 && selectionOffset < 2) {
+                
+                selectedView.circleView.hidden = false
+                selectedView.circleView.backgroundColor = orangeColor
+                selectedView.textLabel.textColor = UIColor.whiteColor()
+                
+            } else {
+                selectedView.circleView.hidden = true
+                selectedView.textLabel.textColor = UIColor.blackColor()
+            }
+            
+        } else {
+            
+            // close to the selected day
+            if (selectionOffset > -2 && selectionOffset < 2) {
+                print("MAKING slection text white")
+                selectedView.circleView.hidden = false
+                selectedView.circleView.backgroundColor = UIColor.blackColor()
+                selectedView.textLabel.textColor = UIColor.whiteColor()
+            } else {
+                selectedView.circleView.hidden = true
+                selectedView.textLabel.textColor = UIColor.blackColor()
+                print("MAKING slection text black")
+            }
+            
+            
+            if (todayOffset > -2 && todayOffset < 2) {
+                todayView.textLabel.textColor = orangeColor
+            } else {
+                todayView.textLabel.textColor = UIColor.blackColor()
+            }
+            
+        }
+        
+        if (todayOffset < 2) {
+            for pastView in pastViews {
+                pastView.textLabel.textColor = UIColor.lightGrayColor()
+            }
+        } else {
+            for pastView in pastViews {
+                pastView.textLabel.textColor = UIColor.blackColor()
+                if (pastView == selectedView && (selectionOffset > -2 && selectionOffset < 2)) {
+                    pastView.textLabel.textColor = UIColor.whiteColor()
+                }
+            }
+        }
+        
     }
     
     func calendarDidLoadPreviousPage(calendar: JTCalendarManager!) {
+        print("loading prev")
         selectionOffset -= 1
+        todayOffset -= 1
         
+        /*
         if (selectionOffset > -2 && selectionOffset < 2) {
             highlight.hidden = false
+            dateNumberLabel.hidden = false
         } else {
             highlight.hidden = true
+            dateNumberLabel.hidden = true
+        }
+        
+        if (todayOffset > -2 && todayOffset < 2) {
+            todayView.textLabel.textColor = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1) // Alizarin
+            
+        } else {
+            todayView.textLabel.textColor = UIColor.blackColor()
+
+        }
+        */
+        
+ 
+        
+        // today is selected
+        if (selectedView == todayView) {
+            
+            // close to the selected day
+            if (selectionOffset > -2 && selectionOffset < 2) {
+                
+                selectedView.circleView.hidden = false
+                selectedView.circleView.backgroundColor = orangeColor
+                selectedView.textLabel.textColor = UIColor.whiteColor()
+                
+            } else {
+                selectedView.circleView.hidden = true
+                selectedView.textLabel.textColor = UIColor.blackColor()
+            }
+
+        } else {
+            
+            // close to the selected day
+            if (selectionOffset > -2 && selectionOffset < 2) {
+                selectedView.circleView.hidden = false
+                selectedView.circleView.backgroundColor = UIColor.blackColor()
+                selectedView.textLabel.textColor = UIColor.whiteColor()
+            } else {
+                selectedView.circleView.hidden = true
+                selectedView.textLabel.textColor = UIColor.blackColor()
+            }
+            
+            
+            if (todayOffset > -2 && todayOffset < 2) {
+                todayView.textLabel.textColor = orangeColor
+            } else {
+                todayView.textLabel.textColor = UIColor.blackColor()
+            }
+            
+        }
+        
+        if (todayOffset < 2) {
+            for pastView in pastViews {
+                pastView.textLabel.textColor = UIColor.lightGrayColor()
+            }
+        } else {
+            for pastView in pastViews {
+                pastView.textLabel.textColor = UIColor.blackColor()
+                if (pastView == selectedView && (selectionOffset > -2 && selectionOffset < 2)) {
+                    pastView.textLabel.textColor = UIColor.whiteColor()
+                }
+            }
         }
     }
     
+    func calendar(calendar: JTCalendarManager!, canDisplayPageWithDate date: NSDate!) -> Bool {
+        return calendar.dateHelper.date(date, isEqualOrAfter: NSDate())
+    }
     
     func calendar(calendar: JTCalendarManager!, didTouchDayView dayView: UIView!) {
         
-        highlight.removeFromSuperview()
-        
-        //print("touching day view")
+    
+
         
         // Use to indicate the selected date
-        let JTDayView = dayView as! JTCalendarDayView
-        let dateSelected = JTDayView.date
-        //print(dateSelected.description)
-        //updateDateAndTime(dateSelected)
+
+        JTDayView = dayView as! JTCalendarDayView
         
-        // Animation for the circleView
-        JTDayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1)
-        UIView.transitionWithView(JTDayView, duration: 0.3, options: UIViewAnimationOptions.TransitionNone, animations: {
-            JTDayView.circleView.transform = CGAffineTransformIdentity
-            }, completion: nil)
         
-        // Load the previous page or next page if touch a day from another month
-        /*
-        if (!(calendarManager.dateHelper.date(calendarContentView?.date, isTheSameMonthThan: JTDayView.date))) {
-            if (calendarContentView?.date.compare(JTDayView.date) == NSComparisonResult.OrderedAscending) {
-                calendarContentView?.loadNextPageWithAnimation()
+        if (JTDayView.textLabel.textColor != UIColor.lightGrayColor()) {
+            
+            
+            
+            var color: UIColor!
+            if ((selectedView.date.mdMonth == NSDate().mdMonth) && (selectedView.date.mdYear == NSDate().mdYear) && (selectedView.date.mdDay == NSDate().mdDay)) {
+                
+                color = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1) // Alizarin
             } else {
-                calendarContentView?.loadPreviousPageWithAnimation()
+                //color = UIColor(colorLiteralRed: 52/255, green: 73/255, blue: 94/255, alpha: 1)
+                color = UIColor.blackColor()
             }
-        }*/
+            
+            selectedView.circleView.hidden = true
+            selectedView.textLabel.textColor = color
+            
+            
+            selectedView = JTDayView
+            
+            
+            if ((selectedView.date.mdMonth == NSDate().mdMonth) && (selectedView.date.mdYear == NSDate().mdYear) && (selectedView.date.mdDay == NSDate().mdDay)) {
+                
+                color = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1) // Alizarin
+            } else {
+                //color = UIColor(colorLiteralRed: 52/255, green: 73/255, blue: 94/255, alpha: 1)
+                color = UIColor.blackColor()
+            }
+            selectedView.circleView.hidden = false
+            selectedView.circleView.backgroundColor = color
+            selectedView.textLabel.textColor = UIColor.whiteColor()
+            
+            let dateSelected = selectedView.date
+            //print(dateSelected.description)
+            updateDateAndTime(dateSelected)
+            /*
+            todayView.circleView.hidden = true
+            todayView.textLabel.textColor = UIColor.blackColor()
+            highlight.removeFromSuperview()
+            dateNumberLabel.removeFromSuperview()
         
-        
-        
-        //print(calendarMenuView?.description)
-        highlight = UIView(frame: CGRectMake(JTDayView.frame.width/2 - JTDayView.frame.height/2, 0, JTDayView.frame.height, JTDayView.frame.height))
-        //JTDayView.backgroundColor = UIColor.blueColor()
-        highlight.backgroundColor = UIColor.blueColor()
-        highlight.alpha = 0.25
-        highlight.layer.cornerRadius = highlight.frame.width / 2
-        
-        JTDayView.addSubview(highlight)
-        
-        selectionOffset = 0
-        
+            //JTDayView.textLabel.textColor = UIColor.whiteColor()
+            let dateSelected = JTDayView.date
+            //print(dateSelected.description)
+            updateDateAndTime(dateSelected)
+            
+            // Animation for the circleView
+            JTDayView.circleView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.1, 0.1)
+            UIView.transitionWithView(JTDayView, duration: 0.3, options: UIViewAnimationOptions.TransitionNone, animations: {
+                self.JTDayView.circleView.transform = CGAffineTransformIdentity
+                }, completion: nil)
+            
+            // Load the previous page or next page if touch a day from another month
+            /*
+            if (!(calendarManager.dateHelper.date(calendarContentView?.date, isTheSameMonthThan: JTDayView.date))) {
+                if (calendarContentView?.date.compare(JTDayView.date) == NSComparisonResult.OrderedAscending) {
+                    calendarContentView?.loadNextPageWithAnimation()
+                } else {
+                    calendarContentView?.loadPreviousPageWithAnimation()
+                }
+            }*/
+            
+            
+            var color: UIColor!
+            if ((JTDayView.date.mdMonth == NSDate().mdMonth) && (JTDayView.date.mdYear == NSDate().mdYear) && (JTDayView.date.mdDay == NSDate().mdDay)) {
+                
+                color = UIColor(colorLiteralRed: 231/255, green: 76/255, blue: 60/255, alpha: 1) // Alizarin
+            } else {
+                color = UIColor(colorLiteralRed: 52/255, green: 73/255, blue: 94/255, alpha: 1)
+            }
+
+            //print(calendarMenuView?.description)
+            highlight = UIView(frame: CGRectMake(JTDayView.frame.width/2 - JTDayView.frame.height/2, 0, JTDayView.frame.height, JTDayView.frame.height))
+            //JTDayView.backgroundColor = UIColor.blueColor()
+            highlight.backgroundColor = color
+            highlight.layer.cornerRadius = highlight.frame.width / 2
+            
+            JTDayView.addSubview(highlight)
+            
+            let dateNumber = JTDayView.textLabel.text!
+            print(dateNumber)
+            dateNumberLabel = UILabel(frame: highlight.frame)
+            dateNumberLabel.text = dateNumber
+            dateNumberLabel.textAlignment = NSTextAlignment.Center
+            dateNumberLabel.textColor = UIColor.whiteColor()
+            dateNumberLabel.font = UIFont(name: "System", size: 12)
+            JTDayView.addSubview(dateNumberLabel)
+            */
+            selectionOffset = 0
+        }
     }
 
     override func didReceiveMemoryWarning() {

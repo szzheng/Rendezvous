@@ -94,7 +94,7 @@
                     <connections>
                         <segue destination="xh9-1X-Ky8" kind="show" identifier="SignUpSegue" id="jcg-GJ-elg"/>
                         <segue destination="eJE-4M-L97" kind="show" identifier="LogInSegue" id="WNn-7B-TMa"/>
-                        <segue destination="bts-io-qNJ" kind="show" identifier="HomeSegue" id="blG-E8-x0w"/>
+                        <segue destination="bts-io-qNJ" kind="show" identifier="HomeSegue" animates="NO" id="blG-E8-x0w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
