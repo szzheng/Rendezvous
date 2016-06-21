@@ -23,16 +23,16 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
     
     var shouldShowSearchResults = false
     
-    let usersRef = Firebase(url:"https://rendezvous-app.firebaseio.com/users")
-    let contactsRef = Firebase(url:"https://rendezvous-app.firebaseio.com/contacts")
+    let usersRef = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/users")
+    let contactsRef = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/contacts")
     
-    var usersQuery: FQuery!
+    var usersQuery: FIRDatabaseQuery!
     
     @IBOutlet var doneButtonBottomConstraint: NSLayoutConstraint!
     
     //var usersRef: Firebase!
     
-    var users = [FDataSnapshot]()
+    var users = [FIRDataSnapshot]()
     
     var searchController: UISearchController!
     
@@ -179,13 +179,13 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
             //self.activityIndicator.stopAnimating()
             //self.activityIndicator.hidden = true
             print(snapshot.key)
-            if let email = snapshot.value["email"] as! String! {
+            if let email = snapshot.value!["email"] as! String! {
                 
                 if (email == searchString) {
                     print("equal")
                     //print(self.shouldShowSearchResults)
                     
-                    let name = snapshot.value["name"] as! String!
+                    let name = snapshot.value!["name"] as! String!
                     /*
                     if let profilePicture = snapshot.value["Profile Picture"] as? String {
                         let decodedData = NSData(base64EncodedString: profilePicture, options: NSDataBase64DecodingOptions(rawValue: 0))
@@ -195,9 +195,9 @@ class AddContactsViewController: UIViewController, UITableViewDataSource, UITabl
                         self.filteredPhoto = UIImage(named: "Siberian Husky.jpg")!
                     }
  */
-                    let email = snapshot.value["email"] as! String!
+                    let email = snapshot.value!["email"] as! String!
                     self.filteredEmail = email
-                    if let base64String = snapshot.value["Profile Picture"] as! String! {
+                    if let base64String = snapshot.value!["Profile Picture"] as! String! {
                         if (base64String == "") {
                             self.filteredPhotoString = ""
                             self.filteredPhoto = UIImage(named: "Siberian Husky.jpg")!

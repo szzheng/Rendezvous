@@ -35,8 +35,9 @@
   (([[UIScreen mainScreen] bounds].size.width > 320) ? 50 : 50)
 #define kCalendarTimerModeHeight 60
 #define kCalendarActionBarHeight 50
-#define kCalendarClockHeight                                                   \
-  (MIN(popupHolder.mdWidth, popupHolder.mdHeight) * 4.5 / 6.0)
+#define kCalendarClockHeight \
+ (([[UIScreen mainScreen] bounds].size.width > 320) ? 175: 175)
+ // (MIN(popupHolder.mdWidth, popupHolder.mdHeight) * 4.5 / 6.0)
 
 #define kMainCircleRadius 15
 #define kSmallCircleRadius 2
@@ -65,6 +66,8 @@
 @property(nonatomic) UIColor *selectionCenterColor;
 @property(nonatomic) UIColor *backgroundPopupColor;
 @property(nonatomic) UIColor *backgroundClockColor;
+
+@property(nonatomic) int autoShowMinute;
 @end
 
 @implementation MDTimePickerDialog {
@@ -119,13 +122,15 @@
   [self initComponents];
   [self initClockHandView];
   [self initClock];
-
+    
+    _autoShowMinute = 0;
+    /*
   UIPanGestureRecognizer *panGesture =
       [[UIPanGestureRecognizer alloc] initWithTarget:self
                                               action:@selector(rotateHand:)];
   panGesture.delegate = self;
   [panGesture setMaximumNumberOfTouches:1];
-  [self addGestureRecognizer:panGesture];
+  [self addGestureRecognizer:panGesture];*/
 
   UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]
       initWithTarget:self
@@ -193,15 +198,15 @@
 - (void)initTheme {
   int theme = 0;
   if (theme == 0) { // light
-    _headerTextColor = [UIColorHelper colorWithRGBA:@"#2c3e50"];
-    _headerBackgroundColor = [UIColor whiteColor];
+    _headerTextColor = [UIColorHelper colorWithRGBA:@"#000000"];
+    _headerBackgroundColor = [UIColor clearColor];
 
     _titleColor = [UIColorHelper colorWithRGBA:@"#2F2F2F"];
     _titleSelectedColor = [UIColor whiteColor];
-    _selectionColor = [UIColorHelper colorWithRGBA:@"#2c3e50"];
-    _selectionCenterColor = [UIColorHelper colorWithRGBA:@"#16a085"];
+    _selectionColor = [UIColorHelper colorWithRGBA:@"#000000"];
+    _selectionCenterColor = [UIColorHelper colorWithRGBA:@"#fc3c34"];
 
-    _backgroundPopupColor = [UIColor whiteColor];
+    _backgroundPopupColor = [UIColor clearColor];
     _backgroundClockColor = [UIColorHelper colorWithRGBA:@"#ECEFF1"];
   } else { // dark
     _headerTextColor = [UIColor whiteColor];
@@ -219,6 +224,7 @@
 
 - (void)initComponents {
   UIView *rootView = [MDDeviceHelper getMainView];
+    self.backgroundColor = [UIColor clearColor];
   //[self setFrame:rootView.bounds];
 
   popupHolder = [[UIView alloc] init];
@@ -228,6 +234,8 @@
   popupHolder.layer.shadowColor = [[UIColor blackColor] CGColor];
   popupHolder.layer.shadowOffset = CGSizeMake(0, 2.5);
 */
+
+
 
   int vSpacing = rootView.bounds.size.height * 0.05;
   int hSpacing = rootView.bounds.size.width * 0.1;
@@ -344,23 +352,25 @@
 
   [popupHolder setBackgroundColor:_backgroundPopupColor];
   [self addSubview:popupHolder];
-  [self setBackgroundColor:[[UIColor grayColor] colorWithAlphaComponent:0.5]];
+  [self setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)initHeaderView {
   _header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, popupHolder.mdWidth,
                                                      kCalendarHeaderHeight)];
+    
+    //_header.hidden = YES;
 
   _headerLabelHour = [[UILabel alloc]
       initWithFrame:CGRectMake(0, 0, _header.mdWidth / 2, _header.mdHeight)];
-  _headerLabelHour.font = [UIFont systemFontOfSize:30];
+  _headerLabelHour.font = [UIFont monospacedDigitSystemFontOfSize:40 weight:UIFontWeightRegular];
   _headerLabelHour.textAlignment = NSTextAlignmentRight;
 
   _headerLabelMinute = [[UILabel alloc]
       initWithFrame:CGRectMake(_header.mdWidth / 2, 0, _header.mdWidth / 2,
                                _header.mdHeight)];
   _headerLabelMinute.textAlignment = NSTextAlignmentLeft;
-  _headerLabelMinute.font = [UIFont systemFontOfSize:30];
+  _headerLabelMinute.font = [UIFont monospacedDigitSystemFontOfSize:40 weight:UIFontWeightRegular];
 
   [_headerLabelHour setTextColor:_headerTextColor];
   [_headerLabelMinute setTextColor:_headerTextColor];
@@ -369,12 +379,7 @@
   [_header addSubview:_headerLabelMinute];
   [popupHolder addSubview:_header];
   [_header setBackgroundColor:_headerBackgroundColor];
-    _headerLabelHour.layer.borderColor = [[UIColor redColor] CGColor];
-    _headerLabelHour.layer.borderWidth = 0.5;
-    _headerLabelMinute.layer.borderColor = [[UIColor blueColor] CGColor];
-    _headerLabelMinute.layer.borderWidth = 0.5;
-    _headerLabelTimeMode.layer.borderColor = [[UIColor greenColor] CGColor];
-    _headerLabelTimeMode.layer.borderWidth = 0.5;
+
  
 
   UITapGestureRecognizer *showClockHourSelectorGesture =
@@ -392,6 +397,8 @@
 
 - (void)initClock {
   // init hour clock
+    
+
   _clockHour = [[UIView alloc]
       initWithFrame:CGRectMake(
                         (popupHolder.mdWidth - kCalendarClockHeight) / 2,
@@ -405,6 +412,17 @@
   _backgroundColock.path =
       [UIBezierPath bezierPathWithOvalInRect:_backgroundColock.bounds].CGPath;
   _backgroundColock.fillColor = _backgroundClockColor.CGColor;
+    UIPanGestureRecognizer *minutePanGesture =
+    [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(rotateHand:)];
+    minutePanGesture.delegate = self;
+    [minutePanGesture setMaximumNumberOfTouches:1];
+    UIPanGestureRecognizer *hourPanGesture =
+    [[UIPanGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(rotateHand:)];
+    hourPanGesture.delegate = self;
+    [hourPanGesture setMaximumNumberOfTouches:1];
+    
   [popupHolder.layer insertSublayer:_backgroundColock atIndex:0];
 
   double stepAngle = 2 * M_PI / 12;
@@ -419,7 +437,7 @@
       [bt setBackgroundColor:[UIColor clearColor]];
       [bt.layer setCornerRadius:bt.frame.size.width / 2];
 
-      [bt.titleLabel setFont:[UIFont systemFontOfSize:15]];
+      [bt.titleLabel setFont:[UIFont monospacedDigitSystemFontOfSize:15 weight:UIFontWeightRegular]];
       x_point = _clockHour.mdWidth / 2 +
                 sin(stepAngle * i) *
                     (kCalendarClockHeight / 2 - kHourItemSize * 2.0 / 3.0);
@@ -449,7 +467,7 @@
       [bt.layer setCornerRadius:bt.frame.size.width / 2];
 
       if (i < 13) {
-        [bt.titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [bt.titleLabel setFont:[UIFont monospacedDigitSystemFontOfSize:15 weight:UIFontWeightRegular]];
 
         x_point =
             _clockHour.mdWidth / 2 +
@@ -460,7 +478,7 @@
             cos(stepAngle * i) * (kCalendarClockHeight / 2 - kHourItemSize -
                                   kHourItemSize * 2.0 / 3.0);
       } else {
-        [bt.titleLabel setFont:[UIFont systemFontOfSize:11]];
+        [bt.titleLabel setFont:[UIFont monospacedDigitSystemFontOfSize:11 weight:UIFontWeightRegular]];
 
         x_point = _clockHour.mdWidth / 2 +
                   sin(stepAngle * i) *
@@ -498,7 +516,7 @@
     [bt setBackgroundColor:[UIColor clearColor]];
     [bt.layer setCornerRadius:bt.frame.size.width / 2];
 
-    [bt.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    [bt.titleLabel setFont:[UIFont monospacedDigitSystemFontOfSize:15 weight:UIFontWeightRegular]];
     [bt setTitleColor:_titleColor forState:UIControlStateNormal];
 
     x_point = _clockHour.mdWidth / 2 +
@@ -524,11 +542,14 @@
     [self bringSubviewToFront:bt];
   }
 
+    
   [_clockHour setBackgroundColor:[UIColor clearColor]];
   [_clockMinute setBackgroundColor:[UIColor clearColor]];
 
   [popupHolder addSubview:_clockHour];
   [popupHolder addSubview:_clockMinute];
+    [_clockHour addGestureRecognizer:hourPanGesture];
+    [_clockMinute addGestureRecognizer:minutePanGesture];
 
   _clockHour.hidden = NO;
   _clockMinute.hidden = YES;
@@ -711,11 +732,11 @@
         //              range:NSMakeRange(0, 3)];
 
     [attString addAttribute:NSFontAttributeName
-                      value:[UIFont systemFontOfSize:30]
+                      value:[UIFont monospacedDigitSystemFontOfSize:40 weight:UIFontWeightRegular]
                       range:NSMakeRange(0, 3)];
 
     [attString addAttribute:NSFontAttributeName
-                      value:[UIFont systemFontOfSize:18]
+                      value:[UIFont monospacedDigitSystemFontOfSize:18 weight:UIFontWeightRegular]
                       range:NSMakeRange(3, 3)];
     _headerLabelMinute.attributedText = attString;
   } else {
@@ -780,16 +801,18 @@
     [self setFrame:staticFrame];
     /*
     [_headerLabelMinute
-     setTextColor:[UIColorHelper colorWithRGBA:@"#2c3e50"]];*/
+     setTextColor:[UIColorHelper colorWithRGBA:@"#000000"]];*/
 
   UIView *rootView = [MDDeviceHelper getMainView];
   int vSpacing = rootView.bounds.size.height * 0.05;
   int hSpacing = rootView.bounds.size.width * 0.1;
-  if ([[UIScreen mainScreen] bounds].size.width > 320) {
-  } else {
+  //if ([[UIScreen mainScreen] bounds].size.width > 320) {
+  //} else {
     vSpacing /= 2;
     hSpacing /= 2;
-  }
+  //}
+    
+    
 /*
   [popupHolder
       setFrame:CGRectMake(hSpacing, vSpacing, self.mdWidth - 2 * hSpacing,
@@ -811,6 +834,7 @@
     // load the portrait view
     _header.frame =
         CGRectMake(0, 0, popupHolder.mdWidth, kCalendarHeaderHeight);
+      
     _clockHour.center =
         CGPointMake((popupHolder.mdWidth - kCalendarClockHeight) / 2 +
                         kCalendarClockHeight / 2,
@@ -819,6 +843,9 @@
                          kCalendarHeaderHeight - kCalendarClockHeight) /
                             2 -
                         15 + kCalendarClockHeight / 2);
+      
+      
+      
   } break;
 
   case UIInterfaceOrientationLandscapeLeft:
@@ -833,6 +860,7 @@
     }
 
     // load the landscape view
+      /*
     float headerWidthRatio = 0.5;
     if ([[UIScreen mainScreen] bounds].size.width <= 320)
       headerWidthRatio = 0.4;
@@ -858,7 +886,7 @@
                           kCalendarClockHeight / 2,
                       kCalendarClockHeight / 2 - 10);
     }
-
+*/
   } break;
   case UIInterfaceOrientationUnknown:
     break;
@@ -871,9 +899,9 @@
         _header.mdWidth / 2 - 20, 0, _header.mdWidth / 2, _header.mdHeight);
   } else {*/
     _headerLabelHour.frame =
-        CGRectMake(0, 0, _header.mdWidth / 2 - 23, _header.mdHeight);
+        CGRectMake(0, 0, _header.mdWidth / 2 - 21, _header.mdHeight);
     _headerLabelMinute.frame = CGRectMake(
-        _header.mdWidth / 2 - 23, 0, _header.mdWidth / 2, _header.mdHeight);
+        _header.mdWidth / 2 - 21, 0, _header.mdWidth / 2, _header.mdHeight);
   //}
 
   _clockMinute.center = _clockHour.center;
@@ -891,11 +919,11 @@
                       _clockHour.center.y + _clockHour.mdHeight / 2 + 3);
     } else {*/
       _labelTimeModeAM.center =
-          CGPointMake(_clockHour.center.x - _clockHour.mdWidth / 2 + 15 - 10,
-                      _clockHour.center.y + _clockHour.mdHeight / 2 + 15);
+          CGPointMake(_clockHour.center.x - _clockHour.mdWidth / 2 + 15 - 30,
+                      _clockHour.center.y + _clockHour.mdHeight / 2 + 15 - 20);
       _labelTimeModePM.center =
-          CGPointMake(_clockHour.center.x + _clockHour.mdWidth / 2 - 15 + 10,
-                      _clockHour.center.y + _clockHour.mdHeight / 2 + 15);
+          CGPointMake(_clockHour.center.x + _clockHour.mdWidth / 2 - 15 + 30,
+                      _clockHour.center.y + _clockHour.mdHeight / 2 + 15 - 20);
     //}
 
     if ([currentTimeModeStr isEqualToString:@"AM"]) {
@@ -932,15 +960,18 @@
 
 #pragma mark Clock Hand Actions
 - (void)rotateHand:(UIView *)view rotationDegree:(float)degree {
-  [UIView animateWithDuration:0.5
+  [UIView animateWithDuration:0
       delay:0
       options:UIViewAnimationOptionCurveEaseInOut
       animations:^{
         view.transform = CGAffineTransformMakeRotation((degree) * (M_PI / 180));
       }
       completion:^(BOOL finished) {
-        if (_clockHour.hidden == NO) {
-          [self showClockMinute];
+        if (_clockHour.hidden == NO && _autoShowMinute < 2) {
+          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self showClockMinute];
+          });
+          //[self showClockMinute];
         }
         [self didSelect]; // added
       }];
@@ -997,8 +1028,11 @@
 
   [self updateHeaderView];
   if (recognizer.state == UIGestureRecognizerStateEnded) {
-    if (_clockMinute.hidden == YES)
-      [self showClockMinute];
+    if (_clockMinute.hidden == YES && _autoShowMinute < 2)
+      //[self showClockMinute];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self showClockMinute];
+        });
   }
   [self didSelect]; // added
 }
@@ -1129,6 +1163,7 @@
 }
 
 - (void)showClockHour {
+    _autoShowMinute += 1;
   if (_clockHour.hidden == YES) {
     _clockHour.hidden = NO;
     _clockHour.alpha = 0.0;

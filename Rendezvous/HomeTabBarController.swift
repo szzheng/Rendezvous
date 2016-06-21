@@ -14,7 +14,7 @@ class HomeTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.darkGrayColor()], forState:.Normal)
         // Do any additional setup after loading the view.
     }
 

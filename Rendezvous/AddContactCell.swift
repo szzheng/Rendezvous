@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class AddContactCell: UITableViewCell {
 
@@ -18,9 +19,9 @@ class AddContactCell: UITableViewCell {
     var profilePictureString: String!
     var email: String!
     
-    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
-    let usersRef = Firebase(url:"https://rendezvous-app.firebaseio.com/users")
-    let contactsRef = Firebase(url:"https://rendezvous-app.firebaseio.com/contacts")
+    let ref = FIRDatabase.database().reference()
+    let usersRef = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/users")
+    let contactsRef = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/contacts")
     
     
     override func awakeFromNib() {
@@ -47,7 +48,7 @@ class AddContactCell: UITableViewCell {
         
         let adjustedEmail = escapeEmailAddress(email)
         
-        let authData = ref.authData
+        let authData = FIRAuth.auth()?.currentUser
         
         // get contact email
         let addedContact = ["email": email, "name": name.text!, "profile picture": profilePictureString]
@@ -57,11 +58,11 @@ class AddContactCell: UITableViewCell {
         //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
         
         // get your email
-        let yourEmail = authData.providerData["email"] as! String
-        let adjustedYourEmail = escapeEmailAddress(yourEmail)
-        let yourRef = Firebase(url:"https://rendezvous-app.firebaseio.com/contacts/")
+        let yourEmail = authData?.email
+        let adjustedYourEmail = escapeEmailAddress(yourEmail!)
+        let yourRef = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/contacts/")
         
-        yourRef.childByAppendingPath(adjustedYourEmail).childByAppendingPath(adjustedEmail).updateChildValues(addedContact)
+        yourRef.child(adjustedYourEmail).child(adjustedEmail).updateChildValues(addedContact)
         
         
         //let addedContactRef = yourRef.childByAutoId()

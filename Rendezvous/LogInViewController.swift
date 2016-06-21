@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
 
@@ -17,7 +18,7 @@ class LogInViewController: UIViewController {
     var activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 50, 50))
     
     // Get a reference to database
-    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
+    let ref = FIRDatabase.database().reference()
     
     
     override func viewDidLoad() {
@@ -47,18 +48,19 @@ class LogInViewController: UIViewController {
         
         displayActivityIndicator(activityIndicator)
         
-        self.ref.authUser(email, password: password) {
-            error, authData in
-            
+
+        FIRAuth.auth()!.signInWithEmail(email, password: password) { (user, error) in
             self.activityIndicator.stopAnimating()
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
             if error != nil {
                 // an error occured while attempting login
+                print(error!.description)
                 print("Error login")
             } else {
                 // user is logged in, check authData for data
                 self.navigationController?.popViewControllerAnimated(false)
             }
+
         }
     }
     

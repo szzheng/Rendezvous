@@ -93,15 +93,16 @@
         }
     }
     
-    /*
     for(int i = 0; i < NUMBER_OF_DAY_BY_WEEK; ++i){
         UILabel *label =  _dayViews[i];
-        label.text = days[i];
-    }*/
+        //label.text = days[i];
+    }
 }
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
+    
     if(!_dayViews){
         return;
     }

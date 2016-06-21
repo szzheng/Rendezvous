@@ -19,7 +19,7 @@ class SetEmailViewController: UIViewController {
     @IBOutlet var continueButton: UIButton!
     
     // Get a reference to registered emails
-    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/user-emails")
+    let ref = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/user-emails")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,6 +132,9 @@ class SetEmailViewController: UIViewController {
         let setPasswordVC = segue.destinationViewController as! SetPasswordViewController
         setPasswordVC.email = emailAddress.text!
     }
+    
+    
+    
     
 
 }

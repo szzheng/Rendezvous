@@ -83,6 +83,8 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
+    
     _textLabel.frame = self.bounds;
     
     CGFloat sizeCircle = MIN(self.frame.size.width, self.frame.size.height);
@@ -117,7 +119,7 @@
     static NSDateFormatter *dateFormatter = nil;
     if(!dateFormatter){
         dateFormatter = [_manager.dateHelper createDateFormatter];
-        [dateFormatter setDateFormat:@"d"];
+        [dateFormatter setDateFormat:@"dd"];
     }
     
     _textLabel.text = [dateFormatter stringFromDate:_date];

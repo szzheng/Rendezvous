@@ -22,6 +22,29 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict/>
+		<key>amazonaws.com</key>
+		<dict>
+			<key>NSIncludesSubdomains</key>
+			<true/>
+			<key>NSThirdPartyExceptionMinimumTLSVersion</key>
+			<string>TLSv1.0</string>
+			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+			<false/>
+		</dict>
+		<key>amazonaws.com.cn</key>
+		<dict>
+			<key>NSIncludesSubdomains</key>
+			<false/>
+			<key>NSThirdPartyExceptionMinimumTLSVersion</key>
+			<string>TLSv1.0</string>
+			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -30,34 +53,13 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>amazonaws.com.cn</key>
-		<dict>
-			<key>NSIncludesSubdomains</key>
-			<false/>
-			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-			<false/>
-			<key>NSThirdPartyExceptionMinimumTLSVersion</key>
-			<string>TLSv1.0</string>
-		</dict>
-		<key>amazonaws.com</key>
-		<dict>
-			<key>NSIncludesSubdomains</key>
-			<true/>
-			<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-			<false/>
-			<key>NSThirdPartyExceptionMinimumTLSVersion</key>
-			<string>TLSv1.0</string>
-		</dict>
-		<key>NSExceptionDomains</key>
-		<dict/>
-	</dict>
 </dict>
 </plist>

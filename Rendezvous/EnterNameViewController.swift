@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class EnterNameViewController: UIViewController {
 
@@ -19,7 +20,7 @@ class EnterNameViewController: UIViewController {
     var firstNameTrimmed: String!
     var lastNameTrimmed: String!
     
-    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,15 +60,15 @@ class EnterNameViewController: UIViewController {
         // Valid names
         } else {
             
-            let authData = ref.authData
+            let authData = FIRAuth.auth()?.currentUser
             let newUser = ["name": firstNameTrimmed + " " + lastNameTrimmed]
             // Create a child path with a key set to the uid underneath the "users" node
             // This creates a URL path like the following:
             //  - https://<YOUR-FIREBASE-APP>.firebaseio.com/users/<uid>
-            let email = authData.providerData["email"] as! String
-            let adjustedEmail = escapeEmailAddress(email)
+            let email = authData?.email
+            let adjustedEmail = escapeEmailAddress(email!)
             performSegueWithIdentifier("SetProfileSegue", sender: self)
-            ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).updateChildValues(newUser)
+            ref.child("users").child(adjustedEmail).updateChildValues(newUser)
             
             
             

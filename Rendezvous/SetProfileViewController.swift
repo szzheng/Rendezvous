@@ -8,12 +8,13 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 
 class SetProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIScrollViewDelegate, CropPhotoViewControllerDelegate {
 
     // FIREBASE URL
-    let ref = Firebase(url:"https://rendezvous-app.firebaseio.com/")
+    let ref = FIRDatabase.database().reference()
     
     
     var firstName: String!
@@ -116,15 +117,15 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
 
     @IBAction func setPhoto(sender: AnyObject) {
         
-        let authData = ref.authData
+        let authData = FIRAuth.auth()?.currentUser
 
         let data = UIImagePNGRepresentation(image)!
         let base64String = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         
         let user = ["Profile Picture":base64String]
-        let email = authData.providerData["email"] as! String
-        let adjustedEmail = escapeEmailAddress(email)
-        ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).updateChildValues(user)
+        let email = authData?.email
+        let adjustedEmail = escapeEmailAddress(email!)
+        ref.child("users").child(adjustedEmail).updateChildValues(user)
         
         performSegueWithIdentifier("AddContactsSegue", sender: self)
         
@@ -140,11 +141,11 @@ class SetProfileViewController: UIViewController, UINavigationControllerDelegate
     
     
     @IBAction func skipSetPhoto(sender: AnyObject) {
-        let authData = ref.authData
+        let authData = FIRAuth.auth()?.currentUser
         let user = ["profile picture": ""]
-        let email = authData.providerData["email"] as! String
-        let adjustedEmail = escapeEmailAddress(email)
-        ref.childByAppendingPath("users").childByAppendingPath(adjustedEmail).updateChildValues(user)
+        let email = authData?.email
+        let adjustedEmail = escapeEmailAddress(email!)
+        ref.child("users").child(adjustedEmail).updateChildValues(user)
         performSegueWithIdentifier("AddContactsSegue", sender: self)
     }
     

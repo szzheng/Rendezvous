@@ -11,8 +11,8 @@ import Firebase
 
 class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let ref = Firebase(url: "https://rendezvous-app.firebaseio.com/")
-    let contactsRef = Firebase(url: "https://rendezvous-app.firebaseio.com/contacts")
+    let ref = FIRDatabase.database().reference()
+    let contactsRef = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/contacts")
     
     
     var email = ""
@@ -20,10 +20,11 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet var contactsTable: UITableView!
     
     var contacts = [Contact]()
-    var myContactsRef: Firebase!
+    var myContactsRef = FIRDatabase.database().reference()
     
     var selectedContactEmail:String!
     var selectedContactName = "Default Name"
+    var selectedContactPhoto: UIImage!
     
     var activityIndicator = UIActivityIndicatorView()
     
@@ -76,24 +77,40 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         
         displayActivityIndicator()
         
+        contactsQuery.observeEventType(.Value, withBlock:  { snapshot in
+            self.activityIndicator.stopAnimating()
+
+            if (snapshot.childrenCount == 0) {
+                print ("NO CONTACTS")
+            } else {
+                for child in snapshot.children {
+                    
+                //contactsQuery.observeEventType(.ChildAdded, withBlock: { snapshot in
+                    
+                    let contact = Contact(name: child.value["name"] as! String!,
+                        profilePicture: child.value["profile picture"] as! String!,
+                        email: child.value["email"] as! String!)
+                        
+                    self.contacts += [contact]
+                    
+                    
+                }
+                self.contactsTable.reloadData()
+            }
+        })
+        /*
         contactsQuery.observeEventType(.ChildAdded, withBlock: { snapshot in
             
-            //self.activityIndicator.stopAnimating()
-            //self.activityIndicator.hidden = true
-            /*
-            if let email = snapshot.value["email"] as String! {
-                print("HI")
-            }*/
-            
-            let contact = Contact(name: snapshot.value["name"] as! String!,
-            profilePicture: snapshot.value["profile picture"] as! String!,
-            email: snapshot.value["email"] as! String!)
-             
-            self.contacts += [contact]
-            self.contactsTable.reloadData()
-            
+            if (snapshot != nil) {
+                let contact = Contact(name: snapshot.value["name"] as! String!,
+                profilePicture: snapshot.value["profile picture"] as! String!,
+                email: snapshot.value["email"] as! String!)
+                 
+                self.contacts += [contact]
+                self.contactsTable.reloadData()
+            }
             self.activityIndicator.stopAnimating()
-        })
+        })*/
         
         /*
         contactsQuery.observeEventType(.Value, withBlock: { snapshot in
@@ -153,6 +170,8 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.email = contacts[indexPath.row].email
         print(contacts[indexPath.row].email)
         
+        
+
         return cell
         
     }
@@ -172,6 +191,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! ContactCell
         selectedContactEmail = cell.email
         selectedContactName = cell.name.text!
+        selectedContactPhoto = cell.profilePicture.image!
         //print(selectedContactEmail)
         performSegueWithIdentifier("ContactSegue", sender: self)
         
@@ -223,6 +243,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         contactVC.email = selectedContactEmail
         //contactVC.email = ""
         contactVC.name = selectedContactName
+        contactVC.photo = selectedContactPhoto
     }
  
 

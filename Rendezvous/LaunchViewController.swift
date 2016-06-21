@@ -8,10 +8,11 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class LaunchViewController: UIViewController {
 
-    let ref = Firebase(url: "https://rendezvous-app.firebaseio.com/")
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class LaunchViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         //ref.unauth()
-        if ref.authData != nil {
+        if FIRAuth.auth()?.currentUser != nil {
             // user authenticated
             performSegueWithIdentifier("HomeSegue", sender: self)
         } else {
@@ -60,13 +61,19 @@ class LaunchViewController: UIViewController {
         
         if (segue.identifier == "HomeSegue") {
             let destinationVC = segue.destinationViewController as! UITabBarController
-            let contactsVS = destinationVC.childViewControllers[1] as! ContactsViewController
+            let contactsVC = destinationVC.childViewControllers[1] as! ContactsViewController
             
-            contactsVS.email = ref.authData.providerData["email"] as! String
-            print(contactsVS.email)
-            contactsVS.myContactsRef = Firebase(url: "https://rendezvous-app.firebaseio.com/contacts/" + contactsVS.escapeEmailAddress(contactsVS.email))
+            contactsVC.email = (FIRAuth.auth()?.currentUser?.email)!
+            //print(contactsVC.email)
+            contactsVC.myContactsRef = FIRDatabase.database().referenceFromURL("https://rendezvous-app.firebaseio.com/contacts/" + contactsVC.escapeEmailAddress(contactsVC.email))
             
-            contactsVS.getContacts()
+            contactsVC.getContacts()
+            
+            let requestsVC = destinationVC.childViewControllers[0] as! RequestsViewController
+            requestsVC.email = contactsVC.email
+            
+            //requestsVC.getRequests()
+            
             
             
         }

@@ -36,7 +36,7 @@
         return;
     }
     
-    //_horizontalContentView.contentOffset = CGPointMake(percentage * _horizontalContentView.contentSize.width, 0);
+    _horizontalContentView.contentOffset = CGPointMake(percentage * _horizontalContentView.contentSize.width, 0);
 }
 
 @end

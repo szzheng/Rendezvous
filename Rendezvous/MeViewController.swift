@@ -8,14 +8,16 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class MeViewController: UIViewController {
 
-    let ref = Firebase(url: "https://rendezvous-app.firebaseio.com/")
+    let ref = FIRDatabase.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "Me"
         // Do any additional setup after loading the view.
     }
 
@@ -26,7 +28,7 @@ class MeViewController: UIViewController {
     
 
     @IBAction func logOut(sender: AnyObject) {
-        ref.unauth()
+        try! FIRAuth.auth()!.signOut()
         self.navigationController?.popToRootViewControllerAnimated(false)
         
     }
